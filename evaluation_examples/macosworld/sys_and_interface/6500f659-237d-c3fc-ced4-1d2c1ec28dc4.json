@@ -1,0 +1,15 @@
+{
+    "id": "6500f659-237d-c3fc-ced4-1d2c1ec28dc4",
+    "force_snapshot_recovery": false,
+    "pre_command": "cp /Users/admin/Benchmark_Backup/com.apple.dock.plist ~/Library/Preferences; killall Dock",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "I wish to directly launch Console from the bottom row of app shortcuts. Demonstrate how to add it to the icons.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to set dockItems to name of every UI element of list 1 of application process \"Dock\"' 2>/dev/null | grep -q \"Console\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

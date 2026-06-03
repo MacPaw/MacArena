@@ -1,0 +1,14 @@
+{
+    "id": "b431b94b-193c-0478-1e26-709f7d3aa453",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Use the Reminder app to remind me to `Remember to check out at Oslo`.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Reminders\" to get the name of every reminder whose completed is false' | grep -q \"Remember to check out at Oslo\" >/dev/null && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

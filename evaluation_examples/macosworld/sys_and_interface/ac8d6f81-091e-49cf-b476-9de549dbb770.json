@@ -1,0 +1,27 @@
+{
+    "id": "ac8d6f81-091e-49cf-b476-9de549dbb770",
+    "force_snapshot_recovery": false,
+    "pre_command": "osascript -e 'tell app \"System Settings\" to quit' && defaults delete com.apple.universalaccess hoverTextEnabled",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Please help me modify the settings so that when the mouse pointer moves over it, it would automatically display a larger version of the text.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "defaults read com.apple.universalaccess hoverTextEnabled 2>/dev/null | grep -q \"1\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"Hover Text\" && echo \"True\" || echo \"False\" ",
+            70
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"Accessibility\" && echo \"True\" || echo \"False\" ",
+            40
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get name of first process whose frontmost is true' 2>/dev/null | grep -q \"System Settings\" && echo \"True\" || echo \"False\" ",
+            10
+        ]
+    ]
+}

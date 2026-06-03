@@ -1,0 +1,21 @@
+{
+    "id": "5457a409-9818-4a37-8075-fd4001ed5a22",
+    "pre_command": "osascript -e 'tell application \"Keynote\" to quit' && sleep 2 && rm -f ~/Documents/Quarterly_Report.key",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 2,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Create a new presentation in Keynote using the 'Exhibition' template, and save it as 'Quarterly_Report.key' in the Documents folder.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -f ~/Documents/Quarterly_Report.key ] && [ -s ~/Documents/Quarterly_Report.key ] && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Keynote"
+    ],
+    "categories": [
+        "Productivity"
+    ]
+}

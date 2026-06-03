@@ -1,0 +1,15 @@
+{
+    "id": "442eff62-9cdd-5657-580d-8c6205050e19",
+    "force_snapshot_recovery": false,
+    "force_ec2": true,
+    "before_action_delay_seconds": 15,
+    "before_grading_delay_seconds": 0,
+    "instruction": "At the bottom of www.gla.ac.uk, there's the postal code of the university. But I suspect this postal code isn't actually located at the university. Please help me search and locate this postal code using the system's built-in Map app.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"Hillhead\" && osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"Glasgow\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

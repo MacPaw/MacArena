@@ -1,0 +1,21 @@
+{
+    "id": "92ee67c9-550e-4548-9943-63fbee8aabd5",
+    "pre_command": "osascript -e 'tell application \"System Settings\" to quit' && sleep 2 && osascript -e 'tell application \"System Events\" to try\\nset loginItemsList to login items\\nrepeat with anItem in loginItemsList\\nif name of anItem contains \"Calculator\" then\\ndelete anItem\\nreturn true\\nend if\\nend repeat\\nreturn true\\non error\\nreturn false\\nend try'",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 3,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Add the 'Calculator' application to the list of items that automatically open when the user logs in.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to try\nset loginItems to name of login items\nrepeat with anItem in loginItems\nif anItem contains \"Calculator\" then\nreturn true\nend if\nend repeat\nreturn false\non error\nreturn false\nend try'",
+            100
+        ]
+    ],
+    "related_apps": [
+        "System Settings"
+    ],
+    "categories": [
+        "System and Interface"
+    ]
+}

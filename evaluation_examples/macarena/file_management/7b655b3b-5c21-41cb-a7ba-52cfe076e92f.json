@@ -1,0 +1,26 @@
+{
+    "id": "7b655b3b-5c21-41cb-a7ba-52cfe076e92f",
+    "pre_command": "osascript -e 'tell application \"Preview\" to quit' && sleep 2 && rm -f ~/Documents/PreviewTasks/proposal_draft.pdf && mkdir -p ~/Documents/PreviewTasks/",
+    "pre_upload_files": [
+        {
+            "local_path": "vm_files/files/sample_pdf.pdf",
+            "path": "~/Documents/PreviewTasks/proposal_draft.pdf"
+        }
+    ],
+    "before_action_delay_seconds": 3,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Open the multi-page PDF document `proposal_draft.pdf` located in `~/Documents/PreviewTasks/`. If it has at least two pages, reorder the document by moving the second page to become the first page. Save the changes to the original file.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -f ~/Documents/PreviewTasks/proposal_draft.pdf ] && [ $(stat -f %m ~/Documents/PreviewTasks/proposal_draft.pdf) -gt $(($(date +%s) - 10)) ] && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Preview"
+    ],
+    "categories": [
+        "File Management"
+    ]
+}

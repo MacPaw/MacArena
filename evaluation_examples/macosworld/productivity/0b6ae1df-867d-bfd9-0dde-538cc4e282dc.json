@@ -1,0 +1,24 @@
+{
+    "id": "0b6ae1df-867d-bfd9-0dde-538cc4e282dc",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Numbers\" to activate' && sleep 5 && osascript -e 'tell application \"Numbers\" to make new document with properties {document template:template \"Home Improvement\"}'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 0,
+    "instruction": "In the project document, go to products and change my previous choice of the dishwasher to model B.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Numbers\" to tell table 2 of sheet 3 of document 1 to get value of cell \"C6\"' 2>/dev/null | grep -q \"true\" && osascript -e 'tell application \"Numbers\" to tell table 2 of sheet 3 of document 1 to get value of cell \"C7\"' 2>/dev/null | grep -q \"false\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"Numbers\" to tell table 2 of sheet 3 of document 1 to get value of cell \"C6\"' 2>/dev/null | grep -q \"true\" && echo \"True\" || echo \"False\" ",
+            50
+        ],
+        [
+            "sascript -e 'tell application \"Numbers\" to tell table 2 of sheet 3 of document 1 to get value of cell \"C7\"' 2>/dev/null | grep -q \"false\" && echo \"True\" || echo \"False\" ",
+            50
+        ]
+    ]
+}

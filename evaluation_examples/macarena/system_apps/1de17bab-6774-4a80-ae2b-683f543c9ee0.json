@@ -1,0 +1,21 @@
+{
+    "id": "1de17bab-6774-4a80-ae2b-683f543c9ee0",
+    "pre_command": "osascript -e 'tell application \"Calendar\" to quit' && sleep 2 && osascript -e 'tell application \"Calendar\" to try\nset today to current date\nset startDate to today\nset endDate to today + (90 * days)\nset eventsDeleted to false\nrepeat with currentCalendar in calendars\ntry\nrepeat\nset yogaEvent to first event of currentCalendar whose (start date \u2265 startDate and start date \u2264 endDate and summary is \"Yoga Class\")\ndelete yogaEvent\nset eventsDeleted to true\nend repeat\non error\nend try\nend repeat\nreturn eventsDeleted\non error\nreturn false\nend try'",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 2,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Create a recurring event titled 'Yoga Class' every Friday at 5 PM for the next three months.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\"\nif not (exists process \"Calendar\") then\nreturn false\nend if\nend tell\ntell application \"Calendar\"\ntry\nset today to (current date)\nset startDate to today\nset endDate to today + (90 * days)\nset eventFound to false\nset allTimesCorrect to true\nset isRecurring to false\nset allDaysCorrect to true\nrepeat with currentCalendar in calendars\ntry\nset eventsInRange to (every event of currentCalendar whose start date \u2265 startDate and start date \u2264 endDate)\nrepeat with currentEvent in eventsInRange\ntry\nset eventSummary to summary of currentEvent\nif eventSummary contains \"Yoga Class\" then\nset eventFound to true\nset eventDate to start date of currentEvent\nif weekday of eventDate is not Friday then\nset allDaysCorrect to false\nend if\nset eventTime to time of eventDate\nset eventHours to eventTime div hours\nif eventHours is not 17 then\nset allTimesCorrect to false\nend if\ntry\nset recurrenceInfo to recurrence of currentEvent\nif recurrenceInfo is not missing value then\nset isRecurring to true\nend if\non error\nend try\nend if\non error\nend try\nend repeat\non error\nend try\nend repeat\nreturn (eventFound and allTimesCorrect and isRecurring and allDaysCorrect)\non error\nreturn false\nend try\nend tell'",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Calendar"
+    ],
+    "categories": [
+        "System Apps"
+    ]
+}

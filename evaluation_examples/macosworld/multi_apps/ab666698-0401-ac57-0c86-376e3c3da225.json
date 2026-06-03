@@ -1,0 +1,14 @@
+{
+    "id": "ab666698-0401-ac57-0c86-376e3c3da225",
+    "force_snapshot_recovery": false,
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Open stickies and help me copy all the content into Notes.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' 2>/dev/null | tr -d '\\n' | grep 'Make a note of it!' | grep 'Stickies lets you keep notes (like these) on your desktop. Use a Stickies note to jot down reminders, lists, or other information. You can also use notes to store frequently used text or graphics.' | grep 'Your current notes appear when you open Stickies.' | grep 'To close this note, click the close button.' | grep 'Stickies has lots of other great features, including a spell checker, import and export features, and other ways to arrange and customize your notes. Plus, you\u2019ll find a \u201cMake New Sticky Note\u201d service in many applications.' | grep 'Stickies has lots of other great features, including a spell checker, import and export features, and other ways to arrange and customize your notes. Plus, you\u2019ll find a \u201cMake New Sticky Note\u201d service in many applications.' | grep -q 'Look in Help to find out more about using Stickies.' && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

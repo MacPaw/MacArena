@@ -1,0 +1,22 @@
+License Information
+
+This project, MacArena, is distributed under multiple licenses depending on the component.
+
+1. MacPaw Original Work
+
+The following components are Copyright 2026 MacPaw Way Ltd. and are licensed under the MIT License (https://opensource.org/licenses/MIT):
+- Software Code: All source code, including the evaluation engine, automation scripts, and integration logic (excluding third-party code in/tasks/osworld/, and /tasks/macosworld/).
+- Architecture & Schemas: The benchmarking framework structure, data organization, task schemas, and evaluation logic.
+- MacArena Tasks: Original tasks and datasets created by the MacPaw team (located in /tasks/macarena/).
+
+2. Third-Party Components
+
+The following components are included under their original licenses and may not be relicensed:
+- OSWorld Tasks (located in /tasks/osworld/): Licensed under Apache License 2.0. See /tasks/osworld/LICENSE.
+- macOSWorld Tasks (located in /tasks/macosworld/): Licensed under Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). See /tasks/macosworld/LICENSE. Note: These tasks are restricted to non-commercial use only.
+
+Please note, if you use or redistribute any of these components, you must retain their original license notices.
+
+---
+
+Full texts of the licenses can be found in the respective component directories (/tasks/osworld/LICENSE, /tasks/macosworld/LICENSE)

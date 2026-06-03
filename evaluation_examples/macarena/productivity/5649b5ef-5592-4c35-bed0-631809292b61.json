@@ -1,0 +1,21 @@
+{
+    "id": "5649b5ef-5592-4c35-bed0-631809292b61",
+    "pre_command": "osascript -e 'tell application \"Obsidian\" to quit' && sleep 2 && rm -rf ~/Documents/ResearchVault && mkdir -p ~/Documents/ResearchVault/.obsidian && printf '{\"vaults\":{\"2c4dba47bc79f875\":{\"path\":\"%s/Documents/ResearchVault\",\"ts\":%s,\"open\":true}}}' \"$HOME\" \"$(($(date +%s)*1000))\" > ~/Library/Application\\ Support/obsidian/obsidian.json",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 3,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Install the \u201cExcalidraw\u201d community plugin and enable it in the \"ResearchVault\" vault.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -d ~/Documents/ResearchVault/obsidian-excalidraw-plugin ] && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Obsidian"
+    ],
+    "categories": [
+        "Productivity"
+    ]
+}

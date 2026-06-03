@@ -1,0 +1,15 @@
+{
+    "id": "758691fd-f7ae-3403-db0d-3bd8ac3ad585",
+    "force_snapshot_recovery": false,
+    "pre_command": "rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && open /Users/admin/Documents/benchmark_files/Multimedia",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 0,
+    "instruction": "When I open POSTERITY.mp3, by default it would be played by Apple Music. Show me how to open it using Quicktime.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' | grep -q \"POSTERITY\" && osascript -e 'tell application \"System Events\" to get name of first process whose frontmost is true' | grep -q \"QuickTime Player\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

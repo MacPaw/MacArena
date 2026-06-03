@@ -1,0 +1,21 @@
+{
+    "id": "554ef923-aa9d-41c3-a18f-0c059c5a5aed",
+    "pre_command": "osascript -e 'tell application \"Contacts\" to quit' && sleep 2 && rm -f ~/Desktop/ContactsBackup.vcf",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 2,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Export all contacts to a vCard file named 'ContactsBackup.vcf' and save it to the Desktop.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -f ~/Desktop/ContactsBackup.vcf ] && [ -s ~/Desktop/ContactsBackup.vcf ] && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Contacts"
+    ],
+    "categories": [
+        "System Apps"
+    ]
+}

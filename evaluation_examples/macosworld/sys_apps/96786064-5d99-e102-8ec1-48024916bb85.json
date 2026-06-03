@@ -1,0 +1,14 @@
+{
+    "id": "96786064-5d99-e102-8ec1-48024916bb85",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Launch the macOS counterpart of Task Manager.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get name of first process whose frontmost is true' | grep -q \"Activity Monitor\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

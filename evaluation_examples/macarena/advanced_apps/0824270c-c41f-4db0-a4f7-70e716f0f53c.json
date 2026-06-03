@@ -1,0 +1,21 @@
+{
+    "id": "0824270c-c41f-4db0-a4f7-70e716f0f53c",
+    "pre_command": "osascript -e 'tell application \"Visual Studio Code\" to quit' && sleep 2 && code --uninstall-extension esbenp.prettier-vscode",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 2,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Install the Prettier extension from the Visual Studio Code marketplace and verify if it becomes listed in the extensions sidebar.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "code --list-extensions | grep -q 'esbenp.prettier-vscode' && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Visual Studio Code"
+    ],
+    "categories": [
+        "Advanced Apps"
+    ]
+}

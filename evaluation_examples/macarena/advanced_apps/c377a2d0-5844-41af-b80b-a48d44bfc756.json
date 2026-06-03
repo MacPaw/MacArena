@@ -1,0 +1,21 @@
+{
+    "id": "c377a2d0-5844-41af-b80b-a48d44bfc756",
+    "pre_command": "osascript -e 'tell application \"Anaconda-Navigator\" to quit'; sleep 2 && { conda env list | grep -q 'data_analysis' && conda env remove -n data_analysis -y || true; } && conda create -n data_analysis -y",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Remove the 'data_analysis' virtual environment entirely using the Anaconda Navigator.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "conda env list | grep -q 'data_analysis' && echo False || echo True",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Anaconda-Navigator"
+    ],
+    "categories": [
+        "Advanced Apps"
+    ]
+}

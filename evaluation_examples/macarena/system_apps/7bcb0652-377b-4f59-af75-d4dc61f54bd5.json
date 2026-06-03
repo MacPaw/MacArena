@@ -1,0 +1,21 @@
+{
+    "id": "7bcb0652-377b-4f59-af75-d4dc61f54bd5",
+    "pre_command": "osascript -e 'tell application \"Reminders\"\n    set listNames to {\"Groceries\", \"Errands\"}\n    repeat with aListName in listNames\n        try\n            set listToDelete to list aListName\n            delete listToDelete\n        on error\n        end try\n    end repeat\n    repeat with aListName in listNames\n        make new list with properties {name:aListName}\n    end repeat\n    set groceryItems to {\"Buy milk\", \"Loaf of bread\", \"Jar of mustard\", \"Dozen eggs\", \"Fresh lettuce\"}\n    set groceriesList to list \"Groceries\"\n    repeat with anItem in groceryItems\n        make new reminder at end of groceriesList with properties {name:anItem}\n    end repeat\nend tell\n' && osascript -e 'tell application \"Reminders\" to quit' && sleep 2",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Move the reminder 'Buy milk' from the 'Groceries' list to the 'Errands' list.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Reminders\" to try\nset errandsList to first list whose name is \"Errands\"\nset remindersList to reminders of errandsList\nset inErrands to false\nrepeat with aReminder in remindersList\nif name of aReminder is \"Buy milk\" then\nset inErrands to true\nexit repeat\nend if\nend repeat\nset groceriesList to first list whose name is \"Groceries\"\nset remindersList to reminders of groceriesList\nset inGroceries to false\nrepeat with aReminder in remindersList\nif name of aReminder is \"Buy milk\" then\nset inGroceries to true\nexit repeat\nend if\nend repeat\nif (inErrands and not inGroceries) then\nreturn \"True\"\nelse\nreturn \"False\"\nend if\non error\nreturn \"False\"\nend try'",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Reminders"
+    ],
+    "categories": [
+        "System Apps"
+    ]
+}

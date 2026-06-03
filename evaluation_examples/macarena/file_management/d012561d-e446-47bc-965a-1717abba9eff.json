@@ -1,0 +1,21 @@
+{
+    "id": "d012561d-e446-47bc-965a-1717abba9eff",
+    "pre_command": "osascript -e 'tell application \"Preview\" to quit' && sleep 2 && rm -f ~/Pictures/photo_cropped.jpg && [ -f ~/Pictures/photo.jpg ] || curl -o ~/Pictures/photo.jpg \"https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI1LTAxL3Jhd3BpeGVsb2ZmaWNlNV9hX2NpbmVtYXRpY19zaG90X29mX3NwcmluZ19mbG93ZXJfZmllbGRfbGFuZHNjYV85OWUyNjU5YS1hZDIwLTRhZjItYWFjYS1mMWY2YWVjYjJhMmRfMS5qcGc.jpg\"",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 3,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Open the image file 'photo.jpg' from the Pictures folder, crop the image to remove the left side, and then save the edited image as 'photo_cropped.jpg' in the Pictures folder.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -f ~/Pictures/photo.jpg ] && [ -f ~/Pictures/photo_cropped.jpg ] && python3 -c \"from PIL import Image; import os; orig_img = Image.open(os.path.expanduser('~/Pictures/photo.jpg')); cropped_img = Image.open(os.path.expanduser('~/Pictures/photo_cropped.jpg')); exit(0 if (cropped_img.width < orig_img.width and cropped_img.height == orig_img.height) else 1)\" && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Preview"
+    ],
+    "categories": [
+        "File Management"
+    ]
+}

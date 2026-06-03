@@ -1,0 +1,24 @@
+{
+    "id": "fb75809d-78f8-db1c-0d47-e84d8d80e53b",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Keynote\" to activate' && sleep 5 && osascript -e 'tell application \"Keynote\" to make new document with properties {document theme:theme \"Dynamic Waves Light\"}'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Help me set title \"Walking through the Sand Dune\" and subtitle \"An Introduction to Photography\".",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Keynote\" to get the object text of the default title item of the current slide of the front document' | grep -q \"Walking through the Sand Dune\" 2>/dev/null && osascript -e 'tell application \"Keynote\" to get the object text of the default body item of the current slide of the front document' | grep -q \"An Introduction to Photography\" 2>/dev/null && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"Keynote\" to get the object text of the default title item of the current slide of the front document' | grep -q \"Walking through the Sand Dune\" 2>/dev/null && echo \"True\" || echo \"False\" ",
+            50
+        ],
+        [
+            "osascript -e 'tell application \"Keynote\" to get the object text of the default body item of the current slide of the front document' | grep -q \"An Introduction to Photography\" 2>/dev/null && echo \"True\" || echo \"False\" ",
+            50
+        ]
+    ]
+}

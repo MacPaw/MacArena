@@ -1,0 +1,81 @@
+{
+  "id": "2c9fc0de-3ee7-45e1-a5df-c86206ad78b5",
+  "snapshot": "os",
+  "instruction": "Could you help me push the changes from commandline in current project to origin main, with the commit message \"daily update\"?",
+  "source": "https://nikki-ricks.medium.com/how-to-use-git-add-commit-and-push-in-vs-code-and-command-line-35c0e8c47b62",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/2c9fc0de-3ee7-45e1-a5df-c86206ad78b5/binder.zip",
+            "path": "/Users/admin/Downloads/binder.zip"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "/bin/bash",
+          "-c",
+          "git config --global user.name \"xlang\" && git config --global user.email \"xlang2024anonym@gmail.com\" && mkdir -p /Users/admin/projects/remote_project && cd /Users/admin/projects/remote_project && git init --initial-branch=main && git config receive.denyCurrentBranch ignore "
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "/bin/bash",
+          "-c",
+          "unzip -q /Users/admin/Downloads/binder.zip -d /Users/admin/projects/ && cd /Users/admin/projects/binder && git init --initial-branch main && git remote add origin /Users/admin/projects/remote_project"
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "open -a Terminal",
+        "shell": true
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python3",
+          "-c",
+          "import pyautogui; pyautogui.write('cd /Users/admin/projects/binder'); pyautogui.press('enter');"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "os",
+    "terminal"
+  ],
+  "evaluator": {
+    "func": "check_include_exclude",
+    "result": {
+      "type": "vm_command_line",
+      "command": [
+        "/bin/bash",
+        "-c",
+        "cd /Users/admin/projects/remote_project; git log --oneline | head -n 1 | awk '{for (i=2; i<=NF; i++) {printf \"%s%s\", $i, (i==NF ? \"\" : \" \")}; print \"\"}'; remote_id=$(git log --oneline | head -n 1 | awk '{print $1}'); cd /Users/admin/projects/binder; local_id=$(git log --oneline | head -n 1 | awk '{print $1}'); if [ \"${local_id}\" = \"${remote_id}\" ]; then echo \"repo is synchronous\"; else echo \"repo is not synchronous\"; fi"
+      ]
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "include": [
+          "daily update",
+          "repo is synchronous"
+        ]
+      }
+    }
+  }
+}

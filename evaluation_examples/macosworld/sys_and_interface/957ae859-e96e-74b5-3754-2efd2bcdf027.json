@@ -1,0 +1,23 @@
+{
+    "id": "957ae859-e96e-74b5-3754-2efd2bcdf027",
+    "force_snapshot_recovery": false,
+    "pre_command": "osascript -e 'tell app \"System Settings\" to quit' && defaults delete -g InitialKeyRepeat",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "I want to set the duration before a key repeats after holding it down to the maximum. Please help me complete this setting.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "defaults read -g InitialKeyRepeat 2>/dev/null | grep -q \"15\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"Keyboard\" && echo \"True\" || echo \"False\" ",
+            50
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get name of first process whose frontmost is true' 2>/dev/null | grep -q \"System Settings\" && echo \"True\" || echo \"False\" ",
+            10
+        ]
+    ]
+}

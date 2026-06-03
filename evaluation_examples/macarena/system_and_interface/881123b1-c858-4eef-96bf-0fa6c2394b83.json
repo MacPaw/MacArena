@@ -1,0 +1,21 @@
+{
+    "id": "881123b1-c858-4eef-96bf-0fa6c2394b83",
+    "pre_command": "osascript -e 'tell application \"Automator\" to quit' && sleep 2 && rm -f \"$HOME/Pictures/Converted/image1.jpg\" \"$HOME/Pictures/Converted/image2.jpg\" && mkdir -p \"$HOME/Pictures/To Convert\" && [ -f \"$HOME/Pictures/To Convert/image1.png\" ] || curl -o \"$HOME/Pictures/To Convert/image1.png\" \"https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI1LTAxL3Jhd3BpeGVsb2ZmaWNlNV9hX2NpbmVtYXRpY19zaG90X29mX3NwcmluZ19mbG93ZXJfZmllbGRfbGFuZHNjYV85OWUyNjU5YS1hZDIwLTRhZjItYWFjYS1mMWY2YWVjYjJhMmRfMS5qcGc.jpg\" && [ -f \"$HOME/Pictures/To Convert/image2.png\" ] || curl -o \"$HOME/Pictures/To Convert/image2.png\" \"https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI1LTAxL3Jhd3BpeGVsb2ZmaWNlNV9hX2NpbmVtYXRpY19zaG90X29mX3NwcmluZ19mbG93ZXJfZmllbGRfbGFuZHNjYV85OWUyNjU5YS1hZDIwLTRhZjItYWFjYS1mMWY2YWVjYjJhMmRfMS5qcGc.jpg\"",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Set up a workflow to resize all images in the 'Desktop/Images' folder to a width of 600 pixels while maintaining the aspect ratio and saves them back in the same folder.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "S=$(find \"$HOME/Pictures/To Convert\" -name '*.png' -type f 2>/dev/null | wc -l); C=$(find \"$HOME/Pictures/Converted\" -name '*.jpg' -type f 2>/dev/null | wc -l); [ $S -gt 0 ] && [ $C -ge $S ] && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Automator"
+    ],
+    "categories": [
+        "System and Interface"
+    ]
+}

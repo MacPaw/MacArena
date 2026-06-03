@@ -1,0 +1,14 @@
+{
+    "id": "543cf125-d2d6-e9ec-6eb5-d7d744221b70",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "I learned that there's an app where I can have floating window of note-taking sticker pads. Please help me open that app, and bring the instruction about customizing my notes to the front.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXChildren\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"It\u2019s easy to customize your notes.\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

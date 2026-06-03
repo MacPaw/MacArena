@@ -1,0 +1,14 @@
+{
+    "id": "4a89fe83-8a93-ecd4-7841-c0bb470571c2",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "In Reminders, create a list called `Shopping`.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Reminders\" to return (exists (list \"Shopping\")) as string' ",
+            100
+        ]
+    ]
+}

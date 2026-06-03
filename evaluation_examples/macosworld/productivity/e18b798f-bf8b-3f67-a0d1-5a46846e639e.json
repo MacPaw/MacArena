@@ -1,0 +1,24 @@
+{
+    "id": "e18b798f-bf8b-3f67-a0d1-5a46846e639e",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Numbers\" to activate'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Create an empty spreadsheet without using templates, with two orange-style header rows.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Numbers\" to tell document 1 to tell table 1 of sheet 1 to get header row count' 2>/dev/null | grep -q \"2\" && osascript -e 'tell application \"Numbers\" to tell document 1 to tell table 1 of sheet 1 to tell cell \"A1\" to get the background color' 2>/dev/null | grep -q \"64397, 40521, 2244\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"Numbers\" to tell document 1 to tell table 1 of sheet 1 to tell cell \"A1\" to get the background color' 2>/dev/null | grep -q \"64397, 40521, 2244\" && echo \"True\" || echo \"False\" ",
+            50
+        ],
+        [
+            "osascript -e 'tell application \"Numbers\" to tell document 1 to tell table 1 of sheet 1 to get header row count' 2>/dev/null | grep -q \"2\" && echo \"True\" || echo \"False\" ",
+            50
+        ]
+    ]
+}

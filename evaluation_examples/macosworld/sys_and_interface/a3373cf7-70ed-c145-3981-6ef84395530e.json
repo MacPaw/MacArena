@@ -1,0 +1,19 @@
+{
+    "id": "a3373cf7-70ed-c145-3981-6ef84395530e",
+    "force_snapshot_recovery": false,
+    "pre_command": "osascript -e \"set volume output volume 71\"",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Mute",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'output muted of (get volume settings)' ",
+            100
+        ],
+        [
+            "osascript -e 'set volumeOutput to output volume of (get volume settings)' -e 'return volumeOutput <= 0' ",
+            100
+        ]
+    ]
+}

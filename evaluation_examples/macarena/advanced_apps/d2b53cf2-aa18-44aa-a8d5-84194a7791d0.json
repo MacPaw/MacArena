@@ -1,0 +1,21 @@
+{
+    "id": "d2b53cf2-aa18-44aa-a8d5-84194a7791d0",
+    "pre_command": "osascript -e 'tell application \"Anaconda-Navigator\" to quit'; sleep 2 && { pkill jupyter || true; } && rm -f ~/Desktop/Data_Exploration.ipynb",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Launch Jupyter Notebook from Anaconda Navigator and create a new notebook titled 'Data_Exploration.ipynb' on my Desktop.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -s ~/Documents/Data_Exploration.ipynb ] && pgrep -f jupyter >/dev/null && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Anaconda-Navigator"
+    ],
+    "categories": [
+        "Advanced Apps"
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "id": "5d72e772-38e2-a556-a48f-39e1403faff3",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Keynote\" to activate' && sleep 5 && osascript -e 'tell application \"Keynote\" to make new document with properties {document theme:theme \"Bold Color\"}' -e 'tell application \"Keynote\" to set the object text of the default body item of the current slide of the front document to \"Lecture 5\"' -e 'tell application \"Keynote\" to set the object text of the default title item of the current slide of the front document to \"Image Transforms\"'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 30,
+    "instruction": "I really like the color of this slide. Help me measure this color and write its decimal RGB values in R, G, B format (e.g., 0, 191, 243) in a memo.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | tr -d ' ' | grep -q \"0,191,243\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "id": "90828d3f-242d-c1c8-37f4-fb6dd2e96540",
+    "force_snapshot_recovery": false,
+    "pre_command": "open /Users/admin/Desktop; osascript -e 'tell application \"Finder\" to close windows' && rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && open /Users/admin/Documents/benchmark_files/NCE/Title",
+    "before_action_delay_seconds": 15,
+    "before_grading_delay_seconds": 0,
+    "instruction": "I need to manage the texts in different languages. Please help me remove all the files except for the Chinese version.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "[ ! -e \"/Users/admin/Documents/benchmark_files/NCE/Title/Matterhorn Man.txt\" ] && [ ! -e \"/Users/admin/Documents/benchmark_files/NCE/Title/\u0427\u0435\u043b\u043e\u0432\u0435\u043a \u0441 \u041c\u0430\u0442\u0442\u0435\u0440\u0445\u043e\u0440\u043d\u0430.txt\" ] && [ ! -e \"/Users/admin/Documents/benchmark_files/NCE/Title/\u30de\u30c3\u30bf\u30fc\u30db\u30eb\u30f3\u306e\u7537.txt\" ] && [ -e \"/Users/admin/Documents/benchmark_files/NCE/Title/\u9a6c\u7279\u970d\u6069\u5c71\u533a\u4eba.txt\" ] && [ ! -e \"/Users/admin/Documents/benchmark_files/NCE/Title/\ub9c8\ud14c\ud638\ub978 \uc0ac\ub78c.txt\" ] && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

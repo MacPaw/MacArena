@@ -1,0 +1,15 @@
+{
+    "id": "efd1a2f9-b0b5-f14b-1fac-70a7f8e8a9e7",
+    "force_snapshot_recovery": false,
+    "pre_command": "rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && open /Users/admin/Documents/benchmark_files/Multimedia",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Help me open the mp4 video and pause at 1:01.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "result=$(osascript -e 'tell application \"QuickTime Player\" to get current time of document 1' 2>/dev/null); if [[ $result =~ ^[0-9]*\\.[0-9]+$ ]] && (( $(echo \"$result > 58\" | bc -l) )) && (( $(echo \"$result < 65\" | bc -l) )); then echo \"True\"; else echo \"False\"; fi ",
+            100
+        ]
+    ]
+}

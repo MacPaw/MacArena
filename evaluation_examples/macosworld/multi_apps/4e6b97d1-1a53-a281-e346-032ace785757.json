@@ -1,0 +1,15 @@
+{
+    "id": "4e6b97d1-1a53-a281-e346-032ace785757",
+    "force_snapshot_recovery": false,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Keynote\" to activate' && sleep 5 && osascript -e 'tell application \"Keynote\" to make new document with properties {document theme:theme \"Bold Color\"}' -e 'tell application \"Keynote\" to set the object text of the default body item of the current slide of the front document to \"Substitute the text here with the raw CSV example\"' -e 'tell application \"Keynote\" to set the object text of the default title item of the current slide of the front document to \"An Example How CSV Stores Data\"' && sleep 5 && osascript -e 'tell application \"Numbers\" to activate' && sleep 5 && osascript -e 'tell application \"Numbers\" to tell (make new document with properties {document template:template \"Blank\"}) to tell table 1 of sheet 1 to set {column count, row count, header row count, header column count} to {2, 4, 0, 0}' && osascript -e 'tell application \"Numbers\" to set value of cell \"A1\" of table 1 of sheet 1 of document 1 to \"Alice\"' && osascript -e 'tell application \"Numbers\" to set value of cell \"A2\" of table 1 of sheet 1 of document 1 to \"Bob\"' && osascript -e 'tell application \"Numbers\" to set value of cell \"A3\" of table 1 of sheet 1 of document 1 to \"Charlie\"' && osascript -e 'tell application \"Numbers\" to set value of cell \"A4\" of table 1 of sheet 1 of document 1 to \"Average\"' && osascript -e 'tell application \"Numbers\" to set value of cell \"B1\" of table 1 of sheet 1 of document 1 to \"91\"' && osascript -e 'tell application \"Numbers\" to set value of cell \"B2\" of table 1 of sheet 1 of document 1 to \"97\"' && osascript -e 'tell application \"Numbers\" to set value of cell \"B3\" of table 1 of sheet 1 of document 1 to \"95\"'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "I need to demonstrate how CSV format stores data. Now there's an open presentation and a spreadsheet. Please help me save this spreadsheet in CSV format to the desktop, name it \"Final.csv\" and copy its original contents into the designated spot in the presentation.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "cat /Users/admin/Desktop/Final.csv 2>/dev/null | grep -q \"Alice,91\" && osascript -e 'tell application \"Keynote\" to get the object text of the default body item of the current slide of the front document' | tr '\\n' '#' | grep -q \"Alice,91#Bob,97#Charlie,95#Average,\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

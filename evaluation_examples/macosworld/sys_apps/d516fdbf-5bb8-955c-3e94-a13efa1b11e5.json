@@ -1,0 +1,15 @@
+{
+    "id": "d516fdbf-5bb8-955c-3e94-a13efa1b11e5",
+    "force_snapshot_recovery": true,
+    "pre_command": "open -a Chess",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "In the Chess app settings, find the chessboard style and change it to \"metal\".",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "defaults read com.apple.Chess MBCBoardStyle 2>/dev/null | grep -q \"Metal\" >/dev/null && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

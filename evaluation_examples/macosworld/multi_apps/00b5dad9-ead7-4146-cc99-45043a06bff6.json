@@ -1,0 +1,16 @@
+{
+    "id": "00b5dad9-ead7-4146-cc99-45043a06bff6",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "echo \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer elementum tortor sit amet enim accumsan, at rhoncus diam laoreet. Nulla mollis tortor augue, varius cursus magna mollis non. Duis luctus justo tellus, vitae efficitur massa congue in. Nam convallis augue at nunc fringilla, et luctus elit congue. Cras ipsum quam, tempor sit amet erat sed, ornare blandit purus. Nulla sed cursus urna. Aliquam massa est, semper venenatis iaculis a, ornare id leo. Aliquam egestas est feugiat sem commodo placerat. Cras fermentum faucibus maximus. Praesent non fermentum leo. Morbi vel scelerisque enim. Sed porta volutpat tortor a ultricies. Donec sed enim quis sapien porttitor consectetur id quis nulla. Maecenas id blandit sapien. Sed ipsum felis, ultricies sit amet orci posuere, auctor fermentum lorem. Aliquam sed nulla quis diam tempus vestibulum sed ac libero.\" > \"/Users/admin/Desktop/Lorem Ipsum.txt\"",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Help me test the layout of a Keynote presentation. Create a blank presentation, then create a new non-title slide. Help me paste a piece of text for layout into it. You can find this text in Lorem Ipsum.txt on the desktop.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Keynote\" to get name of base slide of current slide of the front document' | grep -Eo \"(Bullets|\u9879\u76ee\u7b26\u53f7|\u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0648\u0627\u0644\u062a\u0639\u062f\u0627\u062f \u0627\u0644\u0646\u0642\u0637\u064a|\u062a\u0639\u062f\u0627\u062f \u0646\u0642\u0637\u064a|\u7b87\u6761\u66f8\u304d|\u043f\u0443\u043d\u043a\u0442\u044b)\" && osascript -e 'tell application \"Keynote\" to get the object text of the default body item of the current slide of the front document' | grep -q \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer elementum tortor sit amet enim accumsan, at rhoncus diam laoreet. Nulla mollis tortor augue, varius cursus magna mollis non. Duis luctus justo tellus, vitae efficitur massa congue in. Nam convallis augue at nunc fringilla, et luctus elit congue. Cras ipsum quam, tempor sit amet erat sed, ornare blandit purus. Nulla sed cursus urna. Aliquam massa est, semper venenatis iaculis a, ornare id leo. Aliquam egestas est feugiat sem commodo placerat. Cras fermentum faucibus maximus. Praesent non fermentum leo. Morbi vel scelerisque enim. Sed porta volutpat tortor a ultricies. Donec sed enim quis sapien porttitor consectetur id quis nulla. Maecenas id blandit sapien. Sed ipsum felis, ultricies sit amet orci posuere, auctor fermentum lorem. Aliquam sed nulla quis diam tempus vestibulum sed ac libero.\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

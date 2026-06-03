@@ -1,0 +1,14 @@
+{
+    "id": "bab3960d-a54b-e384-cac3-1213a018f7cd",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Launch disk utility and create an empty image called `Empty`. Keep the settings default but change the size to 50MB.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "du -sh /Users/admin/Documents/Empty.dmg 2>/dev/null | grep -q \"48M\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

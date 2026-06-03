@@ -1,0 +1,14 @@
+{
+    "id": "878dd2c5-e06f-2f0e-6ffe-39fabd5e2a82",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "In disk utility, help me create an empty image. Save with name \"Empty\". Choose the image format to be DVD/CD master. Keep everything else default, including where to save.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "hdiutil imageinfo /Users/admin/Documents/Empty.dmg.cdr 2>/dev/null | grep -q \"UDTO\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

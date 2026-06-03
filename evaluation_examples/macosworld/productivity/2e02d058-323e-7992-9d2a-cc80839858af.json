@@ -1,0 +1,24 @@
+{
+    "id": "2e02d058-323e-7992-9d2a-cc80839858af",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Pages\" to activate'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Create a blank Pages document and insert a table with 8 rows and 6 columns.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Pages\" to count rows of table 1 of front document' 2>/dev/null | grep -q \"8\" && osascript -e 'tell application \"Pages\" to count columns of table 1 of front document' 2>/dev/null | grep -q \"6\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"Pages\" to count rows of table 1 of front document' 2>/dev/null | grep -q \"8\" && echo \"True\" || echo \"False\" ",
+            50
+        ],
+        [
+            "osascript -e 'tell application \"Pages\" to count columns of table 1 of front document' 2>/dev/null | grep -q \"6\" && echo \"True\" || echo \"False\" ",
+            50
+        ]
+    ]
+}

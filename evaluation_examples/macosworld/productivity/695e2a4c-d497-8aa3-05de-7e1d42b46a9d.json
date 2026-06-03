@@ -1,0 +1,24 @@
+{
+    "id": "695e2a4c-d497-8aa3-05de-7e1d42b46a9d",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Pages\" to activate'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Help me create a blank Pages document and insert two separate empty tables in it. No need to configure the details of the tables.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Pages\" to count tables of front document' 2>/dev/null | grep -q \"2\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"Pages\" to count tables of front document' 2>/dev/null | grep -q \"1\" && echo \"True\" || echo \"False\" ",
+            50
+        ],
+        [
+            "osascript -e 'tell application \"Pages\" to count tables of front document' 2>/dev/null | grep -q \"3\" && echo \"True\" || echo \"False\" ",
+            50
+        ]
+    ]
+}

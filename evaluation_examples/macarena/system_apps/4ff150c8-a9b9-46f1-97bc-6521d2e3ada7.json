@@ -1,0 +1,21 @@
+{
+    "id": "4ff150c8-a9b9-46f1-97bc-6521d2e3ada7",
+    "pre_command": "osascript -e 'tell application \"Reminders\" to quit' && sleep 2 && osascript -e 'tell application \"Reminders\" to try\\nset listDeleted to false\\nrepeat with aList in (every list whose name is \"Project Alpha\")\\ndelete aList\\nset listDeleted to true\\nend repeat\\nreturn listDeleted\\non error\\nreturn false\\nend try' && sleep 2",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 4,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Create a new list called 'Project Alpha' and add the following tasks to it: 'Draft proposal by Friday', 'Schedule team meeting for Monday', and 'Review budget report'.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Reminders\" to try\nset projectList to first list whose name is \"Project Alpha\"\nset remindersList to reminders of projectList\nset task1Found to false\nset task2Found to false\nset task3Found to false\nrepeat with aReminder in remindersList\nset taskName to name of aReminder\nif taskName is \"Draft proposal by Friday\" then\nset task1Found to true\nelse if taskName is \"Schedule team meeting for Monday\" then\nset task2Found to true\nelse if taskName is \"Review budget report\" then\nset task3Found to true\nend if\nend repeat\nif task1Found and task2Found and task3Found then\nreturn \"True\"\nelse\nreturn \"False\"\nend if\non error\nreturn \"False\"\nend try' | grep -q 'True' && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Reminders"
+    ],
+    "categories": [
+        "System Apps"
+    ]
+}

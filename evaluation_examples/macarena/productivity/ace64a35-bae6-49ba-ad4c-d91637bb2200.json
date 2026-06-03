@@ -1,0 +1,21 @@
+{
+    "id": "ace64a35-bae6-49ba-ad4c-d91637bb2200",
+    "pre_command": "osascript -e 'tell application \"Obsidian\" to quit' && sleep 2 && rm -rf ~/Documents/ResearchVault",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 3,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Create a new Obsidian vault named \"ResearchVault\" in ~/Documents directory, and add a new note named \u201cIdeas.md\u201d with the text \"# My Ideas\".",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -d ~/Documents/ResearchVault/.obsidian ] && [ -s ~/Documents/ResearchVault/Ideas.md ] && grep -qx '# My Ideas' ~/Documents/ResearchVault/Ideas.md && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Obsidian"
+    ],
+    "categories": [
+        "Productivity"
+    ]
+}

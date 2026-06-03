@@ -1,0 +1,23 @@
+{
+    "id": "81d8bcbb-b456-3ae4-dd6a-6fac2bdbeec2",
+    "force_snapshot_recovery": true,
+    "pre_command": "defaults write com.apple.Notes windowStateArchive -dict-add currentNoteContainerViewMode 0 && osascript -e 'tell application \"Notes\" to make new note with properties {name:\"Lorem Ipsum\", body:\"Dolor Sit Amet\"}' && osascript -e 'tell application \"Notes\" to delete every note' -e 'tell application \"Notes\" to delete every note in folder \"Recently Deleted\"' && osascript -e 'tell application \"Notes\" to quit'",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "I have a markdown file and I need you to help me input it into the Notes app titled `Project Ideas`, making sure the markdown formatting is correctly applied. For example, converting the markdown headers to the appropriate heading format in the Notes app.\n```\n# Idea by Yumi Asai\nApply Warp Stablizer VFX\n\n# Idea by Others\nNothing proposed\n```",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | grep -A20 \"<div><h1>Project Ideas\" | grep -A20 \"<div><h1>Idea by Yumi Asai\" | grep -A20 \"<div>Apply Wrap Stabilizer VFX\" | grep -A20 \"<div><h1>Idea by Others\" | grep -A20 \"<div>Nothing proposed\" >/dev/null && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | grep -A20 \"<div><h1>Project Ideas\" | grep -A20 \"<div><h2>Idea by Yumi Asai\" | grep -A20 \"<div>Apply Wrap Stabilizer VFX\" | grep -A20 \"<div><h2>Idea by Others\" | grep -A20 \"<div>Nothing proposed\" >/dev/null && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | grep -A20 \"<h1>Project Ideas\" | grep -A20 \"Idea by Yumi Asai\" | grep -A20 \"Apply Wrap Stabilizer VFX\" | grep -A20 \"Idea by Others\" | grep -A20 \"Nothing proposed\" >/dev/null && echo \"True\" || echo \"False\" ",
+            50
+        ]
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "id": "4f0d1950-473a-4aa8-b2e1-8bfe4a944e5c",
+    "pre_command": "osascript -e 'tell application \"Notes\" to try\ndelete (first note whose name is \"Meeting Notes\")\nreturn true\non error\nreturn false\nend try' && osascript -e 'tell application \"Notes\" to quit' && sleep 2",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 2,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Create a new note titled 'Meeting Notes' and include a checklist with three items: 'Review agenda', 'Take notes', and 'Set follow-up tasks'.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Notes\" to try\nset foundNote to first note whose name is \"Meeting Notes\"\nset noteContent to body of foundNote\nset agendaFound to false\nset notesFound to false\nset followupFound to false\nif noteContent contains \"Review agenda\" then\nset agendaFound to true\nend if\nif noteContent contains \"Take notes\" then\nset notesFound to true\nend if\nif noteContent contains \"Set follow-up tasks\" then\nset followupFound to true\nend if\nif agendaFound and notesFound and followupFound then\nreturn true\nelse\nreturn false\nend if\non error\nreturn false\nend try'",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Notes"
+    ],
+    "categories": [
+        "Productivity"
+    ]
+}

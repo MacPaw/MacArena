@@ -1,0 +1,14 @@
+{
+    "id": "858e1ef5-3c42-4f8b-1ebf-5ade12c8e5fc",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Open spotlight search window and move the window away from the center of the screen. Then exit spotlight.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "defaults read com.apple.Spotlight userHasMovedWindow 2>/dev/null | grep -q \"1\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

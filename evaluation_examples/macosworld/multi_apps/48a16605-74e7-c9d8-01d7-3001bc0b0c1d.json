@@ -1,0 +1,15 @@
+{
+    "id": "48a16605-74e7-c9d8-01d7-3001bc0b0c1d",
+    "force_snapshot_recovery": false,
+    "pre_command": "echo \" - Submit weekly report\\n - Follow up on pending emails\\n - Prepare zoom link\\n - Prepare slides\" > /Users/admin/Desktop/TODO.txt",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "There's a TODO text file on the desktop listing some items. Help me add them to the system's Reminders. Use same order.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Reminders\" to get the name of every reminder whose completed is false' | tr -d ' ' | grep -q \"Submitweeklyreport,Followuponpendingemails,Preparezoomlink,Prepareslides\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

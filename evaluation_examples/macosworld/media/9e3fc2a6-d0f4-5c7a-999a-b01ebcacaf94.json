@@ -1,0 +1,15 @@
+{
+    "id": "9e3fc2a6-d0f4-5c7a-999a-b01ebcacaf94",
+    "force_snapshot_recovery": false,
+    "pre_command": "osascript -e 'tell application \"Music\" to activate'",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 0,
+    "instruction": "In Music, help me create an empty playlist folder called \"Cyclist\", and then open this playlist folder in a separate window.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"Cyclist\" && osascript -e 'tell application \"System Events\" to get name of first process whose frontmost is true' 2>/dev/null | grep -q \"Music\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

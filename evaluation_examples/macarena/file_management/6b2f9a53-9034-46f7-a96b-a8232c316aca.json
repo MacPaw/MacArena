@@ -1,0 +1,21 @@
+{
+    "id": "6b2f9a53-9034-46f7-a96b-a8232c316aca",
+    "pre_command": "osascript -e 'tell application \"Preview\" to quit' && sleep 2 && mkdir -p ~/Documents/PreviewTasks && rm -f ~/Documents/PreviewTasks/combined_report.pdf && [ -f ~/Documents/PreviewTasks/report_part1.pdf ] || (curl -o /tmp/image1.jpg \"https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI1LTAxL3Jhd3BpeGVsb2ZmaWNlNV9hX2NpbmVtYXRpY19zaG90X29mX3NwcmluZ19mbG93ZXJfZmllbGRfbGFuZHNjYV85OWUyNjU5YS1hZDIwLTRhZjItYWFjYS1mMWY2YWVjYjJhMmRfMS5qcGc.jpg\" && sips -s format pdf /tmp/image1.jpg --out ~/Documents/PreviewTasks/report_part1.pdf && rm /tmp/image1.jpg) && [ -f ~/Documents/PreviewTasks/report_part2.pdf ] || (curl -o /tmp/image2.jpg \"https://images.rawpixel.com/image_social_portrait/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3B4NjUzOTA1LWltYWdlLWt3dnhsYmNyLmpwZw.jpg\" && sips -s format pdf /tmp/image2.jpg --out ~/Documents/PreviewTasks/report_part2.pdf && rm /tmp/image2.jpg)",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 4,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Combine `report_part1.pdf` and `report_part2.pdf`, both located in `~/Documents/PreviewTasks/`, into a single new PDF file named `combined_report.pdf` in the same directory, with `report_part2.pdf`'s pages appearing after `report_part1.pdf`'s pages.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -f ~/Documents/PreviewTasks/combined_report.pdf ] && [ -s ~/Documents/PreviewTasks/combined_report.pdf ] && python -c \"import os; try: from PyPDF2 import PdfReader; combined_path = os.path.expanduser('~/Documents/PreviewTasks/combined_report.pdf'); part1_path = os.path.expanduser('~/Documents/PreviewTasks/report_part1.pdf'); part2_path = os.path.expanduser('~/Documents/PreviewTasks/report_part2.pdf'); combined = PdfReader(combined_path); part1 = PdfReader(part1_path); part2 = PdfReader(part2_path); expected_pages = len(part1.pages) + len(part2.pages); combined_size = os.path.getsize(combined_path); part1_size = os.path.getsize(part1_path); part2_size = os.path.getsize(part2_path); print('True' if len(combined.pages) == expected_pages and combined_size > part1_size and combined_size > part2_size else 'False'); except: print('False')\" | grep -q 'True' && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Preview"
+    ],
+    "categories": [
+        "File Management"
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "id": "2131d094-4eef-4bc7-8754-8888d5231781",
+    "pre_command": "osascript -e 'tell application \"Shortcuts\" to quit' && sleep 2 && rm -f ~/Desktop/Projects_Archive.zip && mkdir -p ~/Documents/Projects && echo \"Project Alpha Documentation\" > ~/Documents/Projects/project_alpha.txt && echo \"Meeting notes from Q3 planning session\" > ~/Documents/Projects/meeting_notes.md && echo \"Budget calculations and forecasts\" > ~/Documents/Projects/budget.csv && echo \"Technical specifications document\" > ~/Documents/Projects/tech_specs.pdf && mkdir -p ~/Documents/Projects/images && echo \"Image placeholder data\" > ~/Documents/Projects/images/screenshot1.png && echo \"Logo design file\" > ~/Documents/Projects/images/logo.svg && mkdir -p ~/Documents/Projects/code && echo \"print('Hello World')\" > ~/Documents/Projects/code/main.py && echo \"function init() { return true; }\" > ~/Documents/Projects/code/script.js",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Create a shortcut that archives all files from the 'Projects' folder in Documents into a single ZIP file and saves it to the Desktop and run it.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -f ~/Desktop/Projects.zip ] && [ -s ~/Desktop/Projects.zip ] && shortcuts list | grep -i -E '(archive|projects)' && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Shortcuts"
+    ],
+    "categories": [
+        "System and Interface"
+    ]
+}

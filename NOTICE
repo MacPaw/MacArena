@@ -1,0 +1,15 @@
+MacArena Copyright 2026 MacPaw Way Ltd.
+
+This product includes software and data developed by third parties:
+
+1. OSWorld (https://github.com/xlang-ai/OSWorld) Copyright 2024 XLANG NLP Lab. Licensed under the Apache License, Version 2.0. 
+2. macOSWorld (https://github.com/showlab/macosworld) Copyright 2024 The showlab team. Licensed under CC BY-NC 4.0. 
+3. UTM (https://github.com/utmapp/UTM) Used as a virtual machine infrastructure dependency. Licensed under the Apache License, Version 2.0.
+
+
+The MacPaw team has performed manual validation, adaptation for macOS, and integration of these components into a unified evaluation system.
+MacPaw Contributions
+The following components are developed by MacPaw Way Ltd. and released under the MIT License:
+- All software source code, including the evaluation engine and integration scripts.
+- The benchmarking framework, task schemas, and project architecture.
+- Original task sets and manual adaptations (located in /tasks/macarena/).

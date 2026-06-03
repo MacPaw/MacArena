@@ -1,0 +1,14 @@
+{
+    "id": "9f0d7200-5b15-ccff-b896-b8f6ed5d584b",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Calculate $\\log_{10} 15$ using Calculator.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "defaults read com.apple.calculator LastResultValue 2>/dev/null | awk '{printf \"%.6f\\n\", $1}' 2>/dev/null | grep -q \"1.176091\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

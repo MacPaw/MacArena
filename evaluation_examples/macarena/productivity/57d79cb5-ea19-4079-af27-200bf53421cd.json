@@ -1,0 +1,21 @@
+{
+    "id": "57d79cb5-ea19-4079-af27-200bf53421cd",
+    "pre_command": "osascript -e 'tell application \"Obsidian\" to quit' && sleep 2 && rm -rf ~/Documents/ResearchVault && mkdir -p ~/Documents/ResearchVault/.obsidian && printf '{\"vaults\":{\"2c4dba47bc79f875\":{\"path\":\"%s/Documents/ResearchVault\",\"ts\":%s,\"open\":true}}}' \"$HOME\" \"$(($(date +%s)*1000))\" > ~/Library/Application\\ Support/obsidian/obsidian.json && echo '{\"theme\":\"obsidian\"}' > ~/Documents/ResearchVault/.obsidian/appearance.json",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 3,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Switch the ResearchVault's theme to light.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -f ~/Documents/ResearchVault/.obsidian/appearance.json ] && jq -e '.theme == \"moonstone\"' ~/Documents/ResearchVault/.obsidian/appearance.json > /dev/null && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Obsidian"
+    ],
+    "categories": [
+        "Productivity"
+    ]
+}

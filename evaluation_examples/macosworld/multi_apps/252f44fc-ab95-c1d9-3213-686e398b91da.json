@@ -1,0 +1,19 @@
+{
+    "id": "252f44fc-ab95-c1d9-3213-686e398b91da",
+    "force_snapshot_recovery": false,
+    "pre_command": "defaults write com.apple.Notes windowStateArchive -dict-add currentNoteContainerViewMode 0 && osascript -e 'tell application \"Notes\" to make new note with properties {name:\"Lorem Ipsum\", body:\"Dolor Sit Amet\"}' && osascript -e 'tell application \"Notes\" to delete every note' -e 'tell application \"Notes\" to delete every note in folder \"Recently Deleted\"' && osascript -e 'tell application \"Notes\" to make new note with properties {name:\"METAR API\", body:\"https://tgftp.nws.noaa.gov/data/observations/metar/stations/WSSS.TXT\"}'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "There's a METAR API in my notes. Help me access this URL directly, then copy the current METAR weather report back into the note.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | grep -q \"$(curl -s \"https://aviationweather.gov/cgi-bin/data/metar.php?ids=WSSS&hours=2&order=id%2c-obs&sep=true\" | head -n 1)\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | grep -q \"$(curl -s \"https://aviationweather.gov/cgi-bin/data/metar.php?ids=WSSS&hours=2&order=id%2c-obs&sep=true\" | sed -n '2p')\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

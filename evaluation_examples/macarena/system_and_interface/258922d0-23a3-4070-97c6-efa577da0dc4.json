@@ -1,0 +1,21 @@
+{
+    "id": "258922d0-23a3-4070-97c6-efa577da0dc4",
+    "pre_command": "osascript -e 'tell application \"Automator\" to quit' && sleep 2 && rm -rf ~/Documents/Archived && mkdir -p ~/Downloads && cd ~/Downloads && rm -f old_document.txt old_report.doc old_data.csv old_image.pbm old_manual.pdf old_backup.zip recent_file.txt current_work.doc new_project.xlsx latest_report.pdf && python3 -c \"import os, time; os.chdir(os.path.expanduser('~/Downloads')); old_time = int(time.time()) - (45 * 24 * 3600); old_files = [('old_document.txt', 'Old document content from July'), ('old_report.doc', 'Another old file from June'), ('old_data.csv', 'Old data file'), ('old_image.pbm', 'P1 2 2 0 1 1 0'), ('old_manual.pdf', '%PDF-1.4 fake pdf content'), ('old_backup.zip', 'Old archive content')]; [open(f, 'w').write(c) for f, c in old_files]; [os.utime(f, (old_time, old_time)) for f, c in old_files]; recent_files = [('recent_file.txt', 'Recent file content'), ('current_work.doc', 'Today document'), ('new_project.xlsx', 'Excel data'), ('latest_report.pdf', '%PDF-1.4 recent report')]; [open(f, 'w').write(c) for f, c in recent_files]\"",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 2,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Create a workflow that collects all files from the 'Downloads' folder older than 30 days and moves them to an 'Archived' folder in 'Documents'.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -d ~/Documents/Archived ] && [ -f ~/Documents/Archived/old_document.txt ] && [ -f ~/Documents/Archived/old_report.doc ] && [ -f ~/Documents/Archived/old_data.csv ] && [ -f ~/Documents/Archived/old_image.pbm ] && [ -f ~/Documents/Archived/old_manual.pdf ] && [ -f ~/Documents/Archived/old_backup.zip ] && [ -f ~/Downloads/recent_file.txt ] && [ -f ~/Downloads/current_work.doc ] && [ -f ~/Downloads/new_project.xlsx ] && [ -f ~/Downloads/latest_report.pdf ] && [ ! -f ~/Downloads/old_document.txt ] && [ ! -f ~/Downloads/old_report.doc ] && [ ! -f ~/Downloads/old_data.csv ] && [ ! -f ~/Documents/Archived/recent_file.txt ] && [ ! -f ~/Documents/Archived/current_work.doc ] && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Automator"
+    ],
+    "categories": [
+        "System and Interface"
+    ]
+}

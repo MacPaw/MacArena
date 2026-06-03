@@ -1,0 +1,15 @@
+{
+    "id": "456eefda-4701-e7aa-a447-590bf762bf21",
+    "force_snapshot_recovery": false,
+    "pre_command": "open /Users/admin/Desktop; osascript -e 'tell application \"Finder\" to close windows' && rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && open /Users/admin/Documents/benchmark_files/Multimedia/Faces",
+    "before_action_delay_seconds": 15,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Move all jpg images to trash, keeping images of other formats.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "[[ -f \"/Users/admin/Documents/benchmark_files/Multimedia/Faces/000004.png\" && ! $(ls /Users/admin/Documents/benchmark_files/Multimedia/Faces/*.jpg 2> /dev/null) ]] && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

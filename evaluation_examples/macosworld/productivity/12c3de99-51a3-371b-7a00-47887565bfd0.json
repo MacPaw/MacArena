@@ -1,0 +1,19 @@
+{
+    "id": "12c3de99-51a3-371b-7a00-47887565bfd0",
+    "force_snapshot_recovery": true,
+    "pre_command": "defaults write com.apple.Notes windowStateArchive -dict-add currentNoteContainerViewMode 0 && osascript -e 'tell application \"Notes\" to make new note with properties {name:\"Lorem Ipsum\", body:\"Dolor Sit Amet\"}' && osascript -e 'tell application \"Notes\" to delete every note' -e 'tell application \"Notes\" to delete every note in folder \"Recently Deleted\"' && osascript -e 'tell application \"Notes\" to quit'",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "I want to create a note in the Notes app. Write \"My Journey\" as the title. Write \"Day 1\" in the content.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | grep -q \"<h1>My Journey\" && osascript -e 'tell application \"Notes\" to get the body of every note' | grep -q \"<div>Day 1\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | grep -q \"My Journey\" && osascript -e 'tell application \"Notes\" to get the body of every note' | grep -q \"Day 1\" && echo \"True\" || echo \"False\" ",
+            50
+        ]
+    ]
+}

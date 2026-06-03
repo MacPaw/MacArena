@@ -1,0 +1,15 @@
+{
+    "id": "f0147143-27e5-e942-cd8c-ab723dc6e490",
+    "force_snapshot_recovery": false,
+    "pre_command": "echo \"BEGIN:VCARD\\nVERSION:3.0\\nFN:John Doe\\nTEL:+1234567890\\nEMAIL:john.doe@apple.com\\nEND:VCARD\" > \"/Users/admin/Documents/John Doe.vcf\"",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Help me add John Doe's business card from Documents to Contacts, then change his phone number to +17182913280, and save the changes.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Contacts\" to get the value of phones of (first person whose name is \"John Doe\")' 2>/dev/null | grep -q \"17182913280\" && osascript -e 'tell application \"Contacts\" to get the value of emails of (first person whose name is \"John Doe\")' 2>/dev/null | grep -q \"john.doe@apple.com\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

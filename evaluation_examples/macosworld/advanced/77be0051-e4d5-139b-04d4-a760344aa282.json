@@ -1,0 +1,15 @@
+{
+    "id": "77be0051-e4d5-139b-04d4-a760344aa282",
+    "force_snapshot_recovery": false,
+    "pre_command": "osascript -e 'tell application \"Automator\" to activate'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Help me create a Quick Action named \"Hello\" using Automator, echoing user's input. Users should be able to call it using ``automator -i \"Hello, World!\" ~/Library/Services/Hello.workflow` from the command line. Remember to save your edits.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "automator -i \"Test_message\" ~/Library/Services/Untitled.workflow 2>/dev/null | grep -q \"Test_message\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

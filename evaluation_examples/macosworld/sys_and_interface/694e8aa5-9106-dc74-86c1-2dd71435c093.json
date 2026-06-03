@@ -1,0 +1,23 @@
+{
+    "id": "694e8aa5-9106-dc74-86c1-2dd71435c093",
+    "force_snapshot_recovery": false,
+    "pre_command": "osascript -e 'tell app \"System Settings\" to quit' && defaults delete com.apple.dock mineffect; killall Dock",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Help me modify settings to use scale effect when minimizing windows.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "defaults read com.apple.dock mineffect 2>/dev/null | grep -q \"scale\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"Desktop & Dock\" && echo \"True\" || echo \"False\" ",
+            50
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get name of first process whose frontmost is true' 2>/dev/null | grep -q \"System Settings\" && echo \"True\" || echo \"False\" ",
+            10
+        ]
+    ]
+}

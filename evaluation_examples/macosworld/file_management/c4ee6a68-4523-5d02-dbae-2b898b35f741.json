@@ -1,0 +1,23 @@
+{
+    "id": "c4ee6a68-4523-5d02-dbae-2b898b35f741",
+    "force_snapshot_recovery": false,
+    "pre_command": "open /Users/admin/Desktop; osascript -e 'tell application \"Finder\" to close windows' && rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && open /Users/admin/Documents/benchmark_files/Multimedia/Sources",
+    "before_action_delay_seconds": 15,
+    "before_grading_delay_seconds": 0,
+    "instruction": "In the current directory, help me create two folders named `Documents` and `Images`. Move the documents (txt, markdown, etc.) and the images to the corresponding folder.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "[ $(ls /Users/admin/Documents/benchmark_files/Multimedia/Sources/Images/*.jpg 2>/dev/null | wc -l) -eq 6 ] && [ $(ls /Users/admin/Documents/benchmark_files/Multimedia/Sources/Images/*.png 2>/dev/null | wc -l) -eq 10 ] && [ $(ls /Users/admin/Documents/benchmark_files/Multimedia/Sources/Documents/*.{docx,md,txt} 2>/dev/null | wc -l) -eq 3 ] && [ $(ls /Users/admin/Documents/benchmark_files/Multimedia/Sources/*.{jpg,png,docx,md,txt} 2>/dev/null | wc -l) -eq 0 ] && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "[ $(ls /Users/admin/Documents/benchmark_files/Multimedia/Sources/Images/*.jpg 2>/dev/null | wc -l) -eq 6 ] && [ $(ls /Users/admin/Documents/benchmark_files/Multimedia/Sources/Images/*.png 2>/dev/null | wc -l) -eq 10 ] && [ $(ls /Users/admin/Documents/benchmark_files/Multimedia/Sources/Documents/*.{docx,md,txt} 2>/dev/null | wc -l) -eq 3 ] && echo \"True\" || echo \"False\" ",
+            50
+        ],
+        [
+            "[ -d \"/Users/admin/Documents/benchmark_files/Multimedia/Sources/Images\" ] && [ -d \"/Users/admin/Documents/benchmark_files/Multimedia/Sources/Documents\" ] && echo True || echo False ",
+            20
+        ]
+    ]
+}

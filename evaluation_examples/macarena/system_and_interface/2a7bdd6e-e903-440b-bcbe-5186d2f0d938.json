@@ -1,0 +1,21 @@
+{
+    "id": "2a7bdd6e-e903-440b-bcbe-5186d2f0d938",
+    "pre_command": "osascript -e 'tell application \"Automator\" to quit' && sleep 2 && rm -f ~/Desktop/Compiled_Report.pdf && mkdir -p ~/Documents/Reports && [ -f ~/Documents/Reports/report1.txt ] || echo \"Sample report 1 content\" > ~/Documents/Reports/report1.txt && [ -f ~/Documents/Reports/report2.txt ] || echo \"Sample report 2 content\" > ~/Documents/Reports/report2.txt",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Create a workflow to compile a PDF from all text files located in 'Documents/Reports' and save the final document as 'Compiled_Report.pdf' on the Desktop.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -s ~/Desktop/Compiled_Report.pdf ] && if command -v pdftotext >/dev/null 2>&1; then pdftotext ~/Desktop/Compiled_Report.pdf /tmp/pdf_content.txt 2>/dev/null && [ -s /tmp/pdf_content.txt ] && grep -q \"Sample report 1 content\" /tmp/pdf_content.txt && grep -q \"Sample report 2 content\" /tmp/pdf_content.txt && rm -f /tmp/pdf_content.txt && echo True || (rm -f /tmp/pdf_content.txt; echo False); else python3 -c \"import PyPDF2, os; pdf_path = os.path.expanduser('~/Desktop/Compiled_Report.pdf'); try: with open(pdf_path, 'rb') as f: reader = PyPDF2.PdfReader(f); text = ''.join([page.extract_text() for page in reader.pages]); print('True' if 'Sample report 1 content' in text and 'Sample report 2 content' in text else 'False'); except: print('False')\" 2>/dev/null || echo False; fi",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Automator"
+    ],
+    "categories": [
+        "System and Interface"
+    ]
+}

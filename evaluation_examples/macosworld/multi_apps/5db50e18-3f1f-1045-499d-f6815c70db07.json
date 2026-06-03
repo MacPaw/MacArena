@@ -1,0 +1,16 @@
+{
+    "id": "5db50e18-3f1f-1045-499d-f6815c70db07",
+    "force_snapshot_recovery": true,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Numbers\" to activate' && sleep 5 && osascript -e 'tell application \"Numbers\" to make new document with properties {document template:template \"Personal Budget\"}'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Where is the source data of the two charts? Help me find that data table, and copy the source data table to an empty Pages document.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Pages\" to count rows of table 1 of front document' 2>/dev/null | grep -q \"11\" && osascript -e 'tell application \"Pages\" to count columns of table 1 of front document' 2>/dev/null | grep -q \"4\" && osascript -e 'tell application \"Pages\" to get value of cell \"B2\" of table 1 of front document' 2>/dev/null | grep -q \"200\" && osascript -e 'tell application \"Pages\" to get value of cell \"C3\" of table 1 of front document' 2>/dev/null | grep -q \"32\" && osascript -e 'tell application \"Pages\" to get value of cell \"D5\" of table 1 of front document' 2>/dev/null | grep -q \"50\" && osascript -e 'tell application \"Pages\" to get value of cell \"C11\" of table 1 of front document' 2>/dev/null | grep -q \"1202.75\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

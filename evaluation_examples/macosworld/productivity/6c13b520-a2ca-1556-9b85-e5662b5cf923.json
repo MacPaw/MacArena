@@ -1,0 +1,16 @@
+{
+    "id": "6c13b520-a2ca-1556-9b85-e5662b5cf923",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Keynote\" to activate' && sleep 5 && osascript -e 'tell application \"Keynote\" to make new document with properties {document theme:theme \"Bold Color\"}' -e 'tell application \"Keynote\" to set the object text of the default body item of the current slide of the front document to \"Lecture 5\"' -e 'tell application \"Keynote\" to set the object text of the default title item of the current slide of the front document to \"Image Transforms\"'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Please help me save the current file in a folder called `Lecture Notes New` on Desktop. Name the file as `Lecture 6 template`.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "[ -e \"/Users/admin/Desktop/Lecture Notes New/Lecture 6 template.key\" ] && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

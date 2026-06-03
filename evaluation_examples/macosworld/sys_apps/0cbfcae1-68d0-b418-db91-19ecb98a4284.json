@@ -1,0 +1,18 @@
+{
+    "id": "0cbfcae1-68d0-b418-db91-19ecb98a4284",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Get me to the Diffusers github page. Use private browsing. Please, use Safari.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"GitHub - huggingface/diffusers\" && osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -Eq \"(Private Browsing)\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"GitHub - huggingface/diffusers\" && echo \"True\" || echo \"False\" ",
+            50
+        ]
+    ]
+}

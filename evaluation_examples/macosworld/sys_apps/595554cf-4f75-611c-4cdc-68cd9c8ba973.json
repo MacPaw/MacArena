@@ -1,0 +1,14 @@
+{
+    "id": "595554cf-4f75-611c-4cdc-68cd9c8ba973",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Help me display the value of square root of two in Calculator.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "defaults read com.apple.calculator LastResultValue 2>/dev/null | awk '{printf \"%.6f\\n\", $1}' 2>/dev/null | grep -q \"1.414214\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

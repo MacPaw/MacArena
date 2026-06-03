@@ -1,0 +1,21 @@
+{
+    "id": "71479950-75a4-436c-a8f3-83adb0bed241",
+    "pre_command": "osascript -e 'tell application \"Keynote\" to quit' && sleep 2 && rm -f ~/Documents/Business_Review.key",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 0,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Create a new '~/Documents/Business_Review.key'. On the 4th slide, add a pie chart that represents market share with three slices labeled 'Product A', 'Product B', and 'Product C' with values 40%, 35%, and 25% respectively. Save the presentation as a pdf.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -n \"$(find ~/Documents/Business_Review.key -mmin -60)\" ] && osascript -e 'tell application \"Keynote\"\n    try\n        if (count of slides of document 1) is greater than or equal to 4 then\n            if (count of charts of slide 4 of document 1) is greater than 0 then\n                return \"True\"\n            else\n                return \"False\"\n            end if\n        else\n            return \"False\"\n        end if\n    on error\n        return \"False\"\n    end try\nend tell' | grep -q 'True' && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Keynote"
+    ],
+    "categories": [
+        "Productivity"
+    ]
+}

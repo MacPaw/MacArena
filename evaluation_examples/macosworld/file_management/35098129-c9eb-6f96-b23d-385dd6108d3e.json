@@ -1,0 +1,27 @@
+{
+    "id": "35098129-c9eb-6f96-b23d-385dd6108d3e",
+    "force_snapshot_recovery": false,
+    "pre_command": "open /Users/admin/Desktop; osascript -e 'tell application \"Finder\" to close windows' && rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && open /Users/admin/Documents/benchmark_files/Multimedia/Separated_images",
+    "before_action_delay_seconds": 15,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Could you please help me by moving all contents from the sub-folders within the current folder directly into the main folder?",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "[ $(ls /Users/admin/Documents/benchmark_files/Multimedia/Separated_images/jpg | wc -l) -eq 0 ] && [ $(ls /Users/admin/Documents/benchmark_files/Multimedia/Separated_images/png | wc -l) -eq 0 ] && [ $(ls /Users/admin/Documents/benchmark_files/Multimedia/Separated_images/*.* | wc -l) -eq 4 ] && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "[ $(ls /Users/admin/Documents/benchmark_files/Multimedia/Separated_images/*.jpg 2>/dev/null | wc -l) -eq 1 ] && [ $(ls /Users/admin/Documents/benchmark_files/Multimedia/Separated_images/*.png 2>/dev/null | wc -l) -eq 3 ] && echo \"True\" || echo \"False\" ",
+            50
+        ],
+        [
+            "[ $(ls /Users/admin/Documents/benchmark_files/Multimedia/Separated_images/*.jpg 2>/dev/null | wc -l) -eq 1 ] && echo \"True\" || echo \"False\" ",
+            25
+        ],
+        [
+            "[ $(ls /Users/admin/Documents/benchmark_files/Multimedia/Separated_images/*.png 2>/dev/null | wc -l) -eq 3 ] && echo \"True\" || echo \"False\" ",
+            25
+        ]
+    ]
+}

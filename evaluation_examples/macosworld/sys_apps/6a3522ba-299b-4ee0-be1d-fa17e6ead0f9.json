@@ -1,0 +1,18 @@
+{
+    "id": "6a3522ba-299b-4ee0-be1d-fa17e6ead0f9",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Create an empty disk image with default setting using Disk Utility. Place it at the default location under Documents. Name it as \"Empty\".",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "[ -e \"/Users/admin/Documents/Empty.dmg\" ] && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"Disk Utility\" && echo \"True\" || echo \"False\" ",
+            10
+        ]
+    ]
+}

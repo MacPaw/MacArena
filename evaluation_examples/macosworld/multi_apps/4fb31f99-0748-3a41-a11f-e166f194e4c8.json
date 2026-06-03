@@ -1,0 +1,16 @@
+{
+    "id": "4fb31f99-0748-3a41-a11f-e166f194e4c8",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "echo \"PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9ImJsYWNrIiAvPgo8L3N2Zz4=\" | base64 -d > /Users/admin/Desktop/black.svg",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Resize the black SVG file on the desktop to 200x200, then preview it.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"Quick Look\" && osascript -e 'tell application \"System Events\" to get value of attribute \"AXChildren\" of window 1 of (first application process whose frontmost is true)' | grep -q \"black.svg\" && cat /Users/admin/Desktop/black.svg | grep -q 'svg width=\"200\" height=\"200\"' && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

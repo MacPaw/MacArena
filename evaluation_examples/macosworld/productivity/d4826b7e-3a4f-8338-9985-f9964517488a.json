@@ -1,0 +1,15 @@
+{
+    "id": "d4826b7e-3a4f-8338-9985-f9964517488a",
+    "force_snapshot_recovery": true,
+    "pre_command": "defaults write com.apple.Notes windowStateArchive -dict-add currentNoteContainerViewMode 0 && osascript -e 'tell application \"Notes\" to make new note with properties {name:\"Lorem Ipsum\", body:\"Dolor Sit Amet\"}' && osascript -e 'tell application \"Notes\" to delete every note' -e 'tell application \"Notes\" to delete every note in folder \"Recently Deleted\"' && osascript -e 'tell application \"Notes\" to quit'",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "A colleague requests that you create a note titled Grocery List containing a bullet list with these items: \"Milk\", \"Bread\", and \"Eggs\".",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | grep -q \"<h1>Grocery\" && osascript -e 'tell application \"Notes\" to get the body of every note' | grep -q \"<li>Milk\" && osascript -e 'tell application \"Notes\" to get the body of every note' | grep -q \"<li>Bread\" && osascript -e 'tell application \"Notes\" to get the body of every note' | grep -q \"<li>Eggs\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}
