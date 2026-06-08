@@ -173,7 +173,7 @@ MacPaw Way Ltd. provides this benchmark "as is" and shall not be held liable for
 ## 📚 Citation
 If you use MacArena in your research, please cite the following paper:
 
-```
+```bibtex
 @misc{muryn-etal-2026-aiwild-macarena,
   author      = {Victor Muryn and Maksym Shamrai and Sofiia Mazepa and Yehor Khodysko},
   title       = {MacArena: Benchmarking Computer Use Agents on an Online macOS Environment},
