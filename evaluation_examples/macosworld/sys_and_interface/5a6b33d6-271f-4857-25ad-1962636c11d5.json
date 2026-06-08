@@ -1,0 +1,15 @@
+{
+    "id": "5a6b33d6-271f-4857-25ad-1962636c11d5",
+    "force_snapshot_recovery": false,
+    "pre_command": "cp /Users/admin/Benchmark_Backup/com.apple.dock.plist ~/Library/Preferences; killall Dock",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Demonstrate to me how to remove Freeform from the Dock",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to set dockItems to name of every UI element of list 1 of application process \"Dock\"' 2>/dev/null | grep -Eq \"(Freeform|\u65e0\u8fb9\u8bb0|\u0627\u0644\u0645\u0633\u0627\u062d\u0629 \u0627\u0644\u062d\u0631\u0629|\u30d5\u30ea\u30fc\u30dc\u30fc\u30c9)\" && echo \"False\" || echo \"True\" ",
+            100
+        ]
+    ]
+}

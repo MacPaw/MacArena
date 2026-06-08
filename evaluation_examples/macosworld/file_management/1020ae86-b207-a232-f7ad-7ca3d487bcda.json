@@ -1,0 +1,15 @@
+{
+    "id": "1020ae86-b207-a232-f7ad-7ca3d487bcda",
+    "force_snapshot_recovery": false,
+    "pre_command": "open /Users/admin/Desktop; osascript -e 'tell application \"Finder\" to close windows' && rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && open /Users/admin/Documents/benchmark_files/NCE/Languages",
+    "before_action_delay_seconds": 15,
+    "before_grading_delay_seconds": 0,
+    "instruction": "These are articles in different languages. Help me delete the version that is in French, keeping other files.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "[ -e \"/Users/admin/Documents/benchmark_files/NCE/Languages/Language 1.txt\" ] && [ -e \"/Users/admin/Documents/benchmark_files/NCE/Languages/Language 2.txt\" ] && [ ! -e \"/Users/admin/Documents/benchmark_files/NCE/Languages/Language 3.txt\" ] && [ -e \"/Users/admin/Documents/benchmark_files/NCE/Languages/Language 4.txt\" ] && [ -e \"/Users/admin/Documents/benchmark_files/NCE/Languages/Language 5.txt\" ] && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

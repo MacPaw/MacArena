@@ -1,0 +1,16 @@
+{
+    "id": "a8d64db5-fa91-6112-3e4d-89e3b632aeff",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Finder\" to close windows' && rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && open /Users/admin/Documents/benchmark_files/PDF",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "There's an article called \"Intriguing properties of neural networks\". Help me copy the abstract of this article into a blank Pages document.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Pages\" to get body text of front document' 2>/dev/null | tr -d '\\n' | grep -q \"Deep neural networks are highly expressive models that have recently achievedstate of the art performance on speech and visual recognition tasks. While theirexpressiveness is the reason they succeed, it also causes them to learn uninter-pretable solutions that could have counter-intuitive properties. In this paper wereport two such properties.First, we find that there is no distinction between individual high level units andrandom linear combinations of high level units, according to various methods ofunit analysis. It suggests that it is the space, rather than the individual units, thatcontains the semantic information in the high layers of neural networks.Second, we find that deep neural networks learn input-output mappings that arefairly discontinuous to a significant extent. We can cause the network to misclas-sify an image by applying a certain hardly perceptible perturbation, which is foundby maximizing the network\u2019s prediction error. In addition, the specific nature ofthese perturbations is not a random artifact of learning: the same perturbation cancause a different network, that was trained on a different subset of the dataset, tomisclassify the same input.\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

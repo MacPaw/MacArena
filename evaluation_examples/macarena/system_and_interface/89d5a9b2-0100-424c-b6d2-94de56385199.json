@@ -1,0 +1,21 @@
+{
+    "id": "89d5a9b2-0100-424c-b6d2-94de56385199",
+    "pre_command": "osascript -e 'tell application \"Automator\" to quit' && sleep 2 && rm -f ~/Pictures/Converted/image1.jpg ~/Pictures/Converted/image2.jpg && mkdir -p ~/Pictures/To Convert && [ -f ~/Pictures/To Convert/image1.png ] || curl -o ~/Pictures/To Convert/image1.png \"https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI1LTAxL3Jhd3BpeGVsb2ZmaWNlNV9hX2NpbmVtYXRpY19zaG90X29mX3NwcmluZ19mbG93ZXJfZmllbGRfbGFuZHNjYV85OWUyNjU5YS1hZDIwLTRhZjItYWFjYS1mMWY2YWVjYjJhMmRfMS5qcGc.jpg\" && [ -f ~/Pictures/To Convert/image2.png ] || curl -o ~/Pictures/To Convert/image2.png \"https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI1LTAxL3Jhd3BpeGVsb2ZmaWNlNV9hX2NpbmVtYXRpY19zaG90X29mX3NwcmluZ19mbG93ZXJfZmllbGRfbGFuZHNjYV85OWUyNjU5YS1hZDIwLTRhZjItYWFjYS1mMWY2YWVjYjJhMmRfMS5qcGc.jpg\"",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 3,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Create a workflow that converts all PNG images in the 'Pictures/To Convert' folder to JPG format and saves them in the 'Pictures/Converted' folder.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "SOURCE_COUNT=$(find ~/Pictures/'To Convert' -name '*.png' -type f 2>/dev/null | wc -l); CONVERTED_COUNT=$(find ~/Pictures/Converted -name '*.jpg' -type f 2>/dev/null | wc -l); [ $SOURCE_COUNT -gt 0 ] && [ $CONVERTED_COUNT -ge $SOURCE_COUNT ] && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Automator"
+    ],
+    "categories": [
+        "System and Interface"
+    ]
+}

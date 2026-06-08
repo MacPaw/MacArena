@@ -1,0 +1,15 @@
+{
+    "id": "1ea85063-355f-bfad-3de7-3ab038261d62",
+    "force_snapshot_recovery": false,
+    "pre_command": "rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && osascript -e 'tell application \"Finder\" to close windows'",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 0,
+    "instruction": "I learned that Quicktime can record the screen, but I'm not exactly sure how to do it. Could you show me how to open QuickTime, then record a full-screen recording for a short duration and stop?",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "[[ \"$(system_profiler SPDisplaysDataType 2>/dev/null | grep Resolution | awk '{print $2 \", \" $4}')\" == \"$(osascript -e 'tell application \"QuickTime Player\" to get natural dimensions of document 1' 2>/dev/null)\" ]] && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

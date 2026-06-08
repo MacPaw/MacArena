@@ -1,0 +1,21 @@
+{
+    "id": "a13331ed-680f-4ec6-85f1-172ed6ca8ec5",
+    "pre_command": "osascript -e 'tell application \"TextEdit\" to quit' && sleep 2 && rm -f ~/Desktop/Copied_Recipe.txt && [ -f ~/Downloads/Recipe.txt ] || cat > ~/Downloads/Recipe.txt << \\'EOF\\'\nFluffy Pancakes Recipe\n\nIngredients:\n- 1 cup all-purpose flour\n- 2 tablespoons sugar\n- 2 teaspoons baking powder\n- 1/2 teaspoon salt\n- 1 cup milk\n- 1 large egg\n- 2 tablespoons melted butter\n- 1 teaspoon vanilla extract\n\nInstructions:\n1. In a large bowl, whisk together flour, sugar, baking powder, and salt.\n2. In another bowl, combine milk, egg, melted butter, and vanilla.\n3. Pour wet ingredients into dry ingredients and stir until just combined (don\\'t overmix).\n4. Heat a lightly greased pan or griddle over medium heat.\n5. Pour 1/4 cup of batter for each pancake.\n6. Cook until bubbles form on surface and edges look dry, about 2-3 minutes.\n7. Flip and cook until golden brown on the other side, about 1-2 minutes.\n8. Serve hot with butter and syrup.\n\nMakes about 8 pancakes. Enjoy!\n",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 3,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Open 'Recipe.txt' located in Downloads, copy the entire content, and paste it into a new document, then save it as 'Copied_Recipe.txt' on the Desktop.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -f ~/Desktop/Copied_Recipe.txt ] && [ -s ~/Desktop/Copied_Recipe.txt ] && [ -f ~/Downloads/Recipe.txt ] && cmp -s ~/Downloads/Recipe.txt ~/Desktop/Copied_Recipe.txt && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "TextEdit"
+    ],
+    "categories": [
+        "Productivity"
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "id": "79520236-7b21-20e7-7b23-1d4d2b98e2b9",
+    "force_snapshot_recovery": false,
+    "pre_command": "osascript -e 'tell application \"Music\" to activate'",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 0,
+    "instruction": "I want to enable crossfade while switching songs in Music. Please help me navigate to the corresponding settings panel.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXChildren\" of scroll area 1 of group 1 of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"checkbox Crossfade Songs\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "id": "4f7b220f-9041-4a82-bf6c-abd84093099c",
+    "pre_command": "osascript -e 'tell application \"Numbers\" to quit' && sleep 2 && rm -f ~/Documents/complete_financial_report.xlsx && printf 'Category,Amount,Date\nIncome,5000,2025-01-01\nSalary,4500,2025-01-15\nBonus,500,2025-01-30' > ~/Documents/finance_overview.csv && printf 'Expense,Amount,Category,Date\nRent,1200,Housing,2025-01-01\nGroceries,300,Food,2025-01-05\nUtilities,150,Housing,2025-01-10\nGas,80,Transportation,2025-01-12\nInsurance,200,Healthcare,2025-01-15' > ~/Documents/expenses_detail.csv",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Merge two existing documents in Numbers: 'finance_overview.csv' and 'expenses_detail.csv', combine their tables into a master overview table, and save it as 'complete_financial_report.xlsx' in the Documents folder.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -f ~/Documents/complete_financial_report.xlsx ] && [ -s ~/Documents/complete_financial_report.xlsx ] && python3 -c \"import zipfile,os,sys; path=os.path.expanduser('~/Documents/complete_financial_report.xlsx'); z=zipfile.ZipFile(path); content=' '.join([z.read(f).decode('utf-8','ignore').lower() for f in z.namelist() if f.endswith('.xml') or f.endswith('.iwa')]); finance_terms=['income','salary','bonus','rent','groceries','utilities']; found_terms=sum(1 for term in finance_terms if term in content); sys.exit(0 if found_terms>=4 else 1)\" 2>/dev/null && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Numbers"
+    ],
+    "categories": [
+        "Productivity"
+    ]
+}

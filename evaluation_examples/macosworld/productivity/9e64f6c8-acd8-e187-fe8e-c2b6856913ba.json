@@ -1,0 +1,16 @@
+{
+    "id": "9e64f6c8-acd8-e187-fe8e-c2b6856913ba",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Pages\" to activate' && sleep 5 && osascript -e 'tell application \"Pages\" to make new document with properties {document template:template \"Note Taking\"}'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 0,
+    "instruction": "How to save the current file to desktop with file name \"Template\"? Please help me do that.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "[ -e \"/Users/admin/Desktop/Template.pages\" ] && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

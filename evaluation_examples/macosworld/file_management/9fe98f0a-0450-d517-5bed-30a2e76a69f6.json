@@ -1,0 +1,15 @@
+{
+    "id": "9fe98f0a-0450-d517-5bed-30a2e76a69f6",
+    "force_snapshot_recovery": false,
+    "pre_command": "open /Users/admin/Desktop; osascript -e 'tell application \"Finder\" to close windows' && rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && open /Users/admin/Documents/benchmark_files/NCE/Sources",
+    "before_action_delay_seconds": 15,
+    "before_grading_delay_seconds": 0,
+    "instruction": "My son was naughty. He added an extra file to the current folder. Help me find out this unusual file and copy its contents to the Notes app.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | grep -q \"\ud83e\uddd7\u200d\u2642\ufe0f\ud83c\udfd4\ufe0f\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

@@ -1,0 +1,19 @@
+brew:
+    formulae:
+        socat 1.8.0.3
+
+    cask:
+        gimp 3.0.4
+        git-credential-manager 2.6.1
+        google-chrome 138.0.7204.184
+        libreoffice 25.2.5
+        miniconda py313_25.5.1-1
+        thunderbird 141.0
+        visual-studio-code 1.102.3
+        vlc 3.0.21
+
+other:
+    macos sequoia 15.5
+    keynote version 14.3 (7042.0.76)
+    numbers version 14.4 (7043.0.93)
+    pages version 14.4 (7043.0.93)

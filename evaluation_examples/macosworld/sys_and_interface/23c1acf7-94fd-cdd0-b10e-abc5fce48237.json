@@ -1,0 +1,23 @@
+{
+    "id": "23c1acf7-94fd-cdd0-b10e-abc5fce48237",
+    "force_snapshot_recovery": false,
+    "pre_command": "",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "In \"System Settings > Appearance\", set accent color to red.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "defaults read -g AppleAccentColor 2>/dev/null | grep -q \"0\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"Appearance\" && echo \"True\" || echo \"False\" ",
+            50
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get name of first process whose frontmost is true' 2>/dev/null | grep -q \"System Settings\" && echo \"True\" || echo \"False\" ",
+            10
+        ]
+    ]
+}

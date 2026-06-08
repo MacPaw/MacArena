@@ -1,0 +1,14 @@
+{
+    "id": "2f72dba5-c364-d21b-7040-684f4d6d40b7",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Mark my reminder \"call him\" as completed.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Reminders\" to get the name of every reminder whose completed is true' | grep -q \"Call him\" >/dev/null && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

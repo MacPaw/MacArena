@@ -1,0 +1,14 @@
+{
+    "id": "b071a2dc-6b16-5e76-16a8-72803d557495",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Create a contact group (also called a list) called `Work` in Contacts.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Contacts\" to name of every group' | grep -q \"Work\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

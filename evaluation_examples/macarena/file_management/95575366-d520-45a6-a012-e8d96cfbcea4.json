@@ -1,0 +1,21 @@
+{
+    "id": "95575366-d520-45a6-a012-e8d96cfbcea4",
+    "pre_command": "osascript -e 'tell application \"Preview\" to quit' && sleep 2 && rm -f ~/Documents/PreviewTasks/enhanced_product_shot.png && mkdir -p ~/Documents/PreviewTasks/ && [ -f ~/Documents/PreviewTasks/product_shot.png ] || curl -s -o ~/Documents/PreviewTasks/product_shot.png \"https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI1LTAxL3Jhd3BpeGVsb2ZmaWNlNV9hX2NpbmVtYXRpY19zaG90X29mX3NwcmluZ19mbG93ZXJfZmllbGRfbGFuZHNjYV85OWUyNjU5YS1hZDIwLTRhZjItYWFjYS1mMWY2YWVjYjJhMmRfMS5qcGc.jpg\"",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 3,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Open the `product_shot.png` file located in `~/Documents/PreviewTasks/`, use the 'Adjust Color' feature to increase the exposure slightly, and save the modified image as `enhanced_product_shot.png` in the same directory.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "if [ -f ~/Documents/PreviewTasks/enhanced_product_shot.png ] && [ -s ~/Documents/PreviewTasks/enhanced_product_shot.png ]; then orig_size=$(stat -f %z ~/Documents/PreviewTasks/product_shot.png 2>/dev/null); enhanced_size=$(stat -f %z ~/Documents/PreviewTasks/enhanced_product_shot.png 2>/dev/null); if [ -n \"$orig_size\" ] && [ -n \"$enhanced_size\" ] && [ \"$orig_size\" -ne \"$enhanced_size\" ]; then echo True; else echo False; fi; else echo False; fi",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Preview"
+    ],
+    "categories": [
+        "File Management"
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "id": "9d220c9a-2603-0799-13e9-ebd25e8562a5",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Numbers\" to activate' && sleep 5 && osascript -e 'tell application \"Numbers\" to make new document with properties {document template:template \"Home Improvement\"}'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 0,
+    "instruction": "In this project document, modify the contact list by removing the current example row, and fill in the following information:\n```\nCompany: E home concepts\nPhone: 9191 2601\nEmail: leave empty\nAddress: Tampines Street 43, 520476\n```",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Numbers\" to tell table 1 of sheet 5 of document 1 to get value of cell \"A2\"' | grep -q \"E home concepts\" 2>/dev/null && osascript -e 'tell application \"Numbers\" to tell table 1 of sheet 5 of document 1 to get value of cell \"B2\"' | grep -q \"9191 2601\" 2>/dev/null && osascript -e 'tell application \"Numbers\" to tell table 1 of sheet 5 of document 1 to get value of cell \"C2\"' | grep -q \"missing value\" 2>/dev/null && osascript -e 'tell application \"Numbers\" to tell table 1 of sheet 5 of document 1 to get value of cell \"D2\"' | grep -q \"Tampines Street 43, 520476\" 2>/dev/null && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"Numbers\" to tell table 1 of sheet 5 of document 1 to get value of cell \"A2\"' | grep -q \"E home concepts\" 2>/dev/null && osascript -e 'tell application \"Numbers\" to tell table 1 of sheet 5 of document 1 to get value of cell \"B2\"' | grep -q \"9191 2601\" 2>/dev/null && osascript -e 'tell application \"Numbers\" to tell table 1 of sheet 5 of document 1 to get value of cell \"D2\"' | grep -q \"Tampines Street 43, 520476\" 2>/dev/null && echo \"True\" || echo \"False\" ",
+            75
+        ],
+        [
+            "osascript -e 'tell application \"Numbers\" to tell table 1 of sheet 5 of document 1 to get value of cell \"A2\"' | grep -q \"E home concepts\" 2>/dev/null && echo \"True\" || echo \"False\" ",
+            25
+        ],
+        [
+            "osascript -e 'tell application \"Numbers\" to tell table 1 of sheet 5 of document 1 to get value of cell \"B2\"' | grep -q \"9191 2601\" 2>/dev/null && echo \"True\" || echo \"False\" ",
+            25
+        ],
+        [
+            "osascript -e 'tell application \"Numbers\" to tell table 1 of sheet 5 of document 1 to get value of cell \"C2\"' | grep -q \"missing value\" 2>/dev/null && echo \"True\" || echo \"False\" ",
+            25
+        ],
+        [
+            "osascript -e 'tell application \"Numbers\" to tell table 1 of sheet 5 of document 1 to get value of cell \"D2\"' | grep -q \"Tampines Street 43, 520476\" 2>/dev/null && echo \"True\" || echo \"False\" ",
+            25
+        ]
+    ]
+}

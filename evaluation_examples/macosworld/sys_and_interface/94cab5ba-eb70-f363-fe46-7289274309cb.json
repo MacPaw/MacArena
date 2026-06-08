@@ -1,0 +1,23 @@
+{
+    "id": "94cab5ba-eb70-f363-fe46-7289274309cb",
+    "force_snapshot_recovery": false,
+    "pre_command": "osascript -e 'tell app \"System Settings\" to quit' && defaults delete -g KeyRepeat",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Help me modify keyboard settings, toggling the key repeat rate to the fastest possible.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "defaults read -g KeyRepeat 2>/dev/null | grep -q \"2\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"Keyboard\" && echo \"True\" || echo \"False\" ",
+            50
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get name of first process whose frontmost is true' 2>/dev/null | grep -q \"System Settings\" && echo \"True\" || echo \"False\" ",
+            10
+        ]
+    ]
+}

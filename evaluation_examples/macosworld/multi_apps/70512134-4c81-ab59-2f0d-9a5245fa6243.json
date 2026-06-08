@@ -1,0 +1,15 @@
+{
+    "id": "70512134-4c81-ab59-2f0d-9a5245fa6243",
+    "force_snapshot_recovery": false,
+    "pre_command": "open /Users/admin/Desktop; osascript -e 'tell application \"Finder\" to close windows' && rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && open /Users/admin/Documents/benchmark_files/Multimedia/Faces",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Create a note in Notes, and add these three JPG images of faces to the note.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' 2>/dev/null | grep -q \"rmzsVNNHlg0O9JA+zOP944qX/hHL8jPkE+wNd7ejOD3qK1+U5HFPnYezRwEmjXcX3reQfgartp8y9VYfUV7BZuzcE5+tPuURzho0I/3RR7Ri5EeL/Z2LiPGXPQetd1oXh5NN0x9QvYwJyrFAf+WYx1xW/HY2pvEb7PHnJ521Z10D+xrrj/l3NLndx8iSPFoZGOWT7ztu5HTNaVtAZG8xnl80dwf5Vm2xxbROPvbAM/hU8TOyq5kcN6hiK6Y7HHLc0GhbO0tnJzvcZJrIubaGDBEhV3J3oR154wa1AWWRAGb5gM5YnNQauA1spIyVbiqW4j2f4RzPP4avPNm8x0uVUkHp+7XiiqfwU58M6gf+n4f+iloqm9Tnnuf/2Q==\" && osascript -e 'tell application \"Notes\" to get the body of every note' 2>/dev/null | grep -q \"ZFwnODwO5xXbfDdd/21D90lQD+f/1q47UCRbgA8E123w3AFtMQOfNH8hXXVf7k8OP8c7H+z5C+1XbjjGaVtKbG5jn+la2ALnipmUHGR3rzTvbsZ9npaJ+9YZbtxWbreFtZGzhQpORXTSfLFtHAx0rj/GDtH4du2QkHyzyKuCvJIynL3WzxmVwZ3cdC2aliVZGO3jPrVcjv7/4VpTQxokZVcErzXsN8qPJpLmmz/9k=\" && osascript -e 'tell application \"Notes\" to get the body of every note' 2>/dev/null | grep -q \"6KhWlON2LkFcjJ9KicAH+lFFRe519CaziUHe+APSrzHC8Y46UUUyTPmY5Oe1Y2oTiOFnbovJoopIicmoto8h8Vz/AGnVIp1Yf3enT2qvArl281QS5JVAflx6miiuhLQ8GrNzbuWnYyxH5+cDGSeOeaRJdkhePaVGex59e/vRRWkThqKy0HxueMjIUj5sdD64pzLtzIkmcHyzx+P5H9KKKo5WxG2mIYUlSD3PHqKgmdxAzuSEJBY9+h6e3NFFM1oq80cFO3nXDtkckniiiisz6SLsrH//2Q==\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

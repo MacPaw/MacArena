@@ -1,0 +1,15 @@
+{
+    "id": "ea12a7de-2cf2-57b2-7e8c-13da58cc626a",
+    "force_snapshot_recovery": true,
+    "pre_command": "open -a Chess",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Help me start a new chess game where the computer thinks 3 moves ahead.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get name of first process whose frontmost is true' && defaults read com.apple.Chess MBCSearchTime | grep -q \"3\" >/dev/null && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

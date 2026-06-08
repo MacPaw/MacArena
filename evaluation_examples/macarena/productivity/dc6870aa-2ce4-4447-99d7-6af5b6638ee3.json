@@ -1,0 +1,21 @@
+{
+    "id": "dc6870aa-2ce4-4447-99d7-6af5b6638ee3",
+    "pre_command": "osascript -e 'tell application \"Obsidian\" to quit' && sleep 2 && rm -rf ~/Documents/ResearchVault && mkdir -p ~/Documents/ResearchVault/.obsidian && printf '{\"vaults\":{\"2c4dba47bc79f875\":{\"path\":\"%s/Documents/ResearchVault\",\"ts\":%s,\"open\":true}}}' \"$HOME\" \"$(($(date +%s)*1000))\" > ~/Library/Application\\ Support/obsidian/obsidian.json && echo '# My Ideas' > ~/Documents/ResearchVault/Ideas.md",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 3,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Inside ResearchVault, create a new note called \"Links.md\" that contains a wiki-link to \"Ideas.md\".",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -s ~/Documents/ResearchVault/Links.md ] && grep -qx '\\[\\[Ideas\\]\\]' ~/Documents/ResearchVault/Links.md && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Obsidian"
+    ],
+    "categories": [
+        "Productivity"
+    ]
+}

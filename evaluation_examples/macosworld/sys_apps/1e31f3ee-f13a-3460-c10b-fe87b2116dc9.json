@@ -1,0 +1,26 @@
+{
+    "id": "1e31f3ee-f13a-3460-c10b-fe87b2116dc9",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 0,
+    "instruction": "I have the Japanese font Klee installed on my computer. Find and preview it.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"\u30af\u30ec\u30fc\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"Klee\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"Japanese\" && echo \"True\" || echo \"False\" ",
+            50
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get name of first process whose frontmost is true' || grep -q \"Font Book\" && echo \"True\" || echo \"False\" ",
+            25
+        ]
+    ]
+}

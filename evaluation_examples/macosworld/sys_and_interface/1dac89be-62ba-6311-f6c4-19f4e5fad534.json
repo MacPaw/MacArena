@@ -1,0 +1,15 @@
+{
+    "id": "1dac89be-62ba-6311-f6c4-19f4e5fad534",
+    "force_snapshot_recovery": false,
+    "pre_command": "cp /Users/admin/Benchmark_Backup/com.apple.dock.plist ~/Library/Preferences; killall Dock",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "I don't want web browsers to appear among the apps. Help me remove them.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to set dockItems to name of every UI element of list 1 of application process \"Dock\"' 2>/dev/null | grep -Eq \"(Safari|\u0633\u0641\u0627\u0631\u064a)\" && echo \"False\" || echo \"True\" ",
+            100
+        ]
+    ]
+}

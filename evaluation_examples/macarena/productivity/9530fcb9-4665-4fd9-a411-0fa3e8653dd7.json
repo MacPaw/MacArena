@@ -1,0 +1,21 @@
+{
+    "id": "9530fcb9-4665-4fd9-a411-0fa3e8653dd7",
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit' && sleep 2 && rm -f ~/Documents/My_Resume.pages",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 2,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Create a new document using the 'Resume' template, fill in the name Jane Riley, then save it as 'My_Resume.pages' in the Documents folder.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -f ~/Documents/My_Resume.pages ] && TEXT=$(strings ~/Documents/My_Resume.pages 2>/dev/null) && echo \"$TEXT\" | grep -qi 'jane' && echo \"$TEXT\" | grep -qi 'riley' && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Pages"
+    ],
+    "categories": [
+        "Productivity"
+    ]
+}

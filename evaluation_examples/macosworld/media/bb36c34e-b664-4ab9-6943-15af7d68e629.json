@@ -1,0 +1,15 @@
+{
+    "id": "bb36c34e-b664-4ab9-6943-15af7d68e629",
+    "force_snapshot_recovery": false,
+    "pre_command": "rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && open /Users/admin/Documents/benchmark_files/Multimedia",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Please demonstrate to me how to play the video with a playback speed of 1.25x.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"1147775047-1-208.mp4\" && osascript -e 'tell application \"QuickTime Player\" to get rate of document 1' | grep -q \"1.25\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

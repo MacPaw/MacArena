@@ -1,0 +1,15 @@
+{
+    "id": "07709761-78b1-8043-ffb2-eebaeed08109",
+    "force_snapshot_recovery": true,
+    "pre_command": "",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "I want to know the version of the app Voice Memos installed on my mac. Help me navigate to the page that shows this.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXChildren\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep \"Voice Memos\" | grep -q \"Version\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

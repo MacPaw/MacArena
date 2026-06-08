@@ -1,0 +1,18 @@
+{
+    "id": "1329d65e-b10c-28b7-e3bf-7b6560918a97",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Go into the Maps app and open settings of the app.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get name of first process whose frontmost is true' | grep -q \"Maps\" >/dev/null && osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"Settings\" >/dev/null && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get name of first process whose frontmost is true' | grep -q \"Maps\" >/dev/null && echo \"True\" || echo \"False\" ",
+            50
+        ]
+    ]
+}

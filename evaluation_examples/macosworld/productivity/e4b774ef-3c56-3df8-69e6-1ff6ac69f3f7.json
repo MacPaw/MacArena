@@ -1,0 +1,35 @@
+{
+    "id": "e4b774ef-3c56-3df8-69e6-1ff6ac69f3f7",
+    "force_snapshot_recovery": true,
+    "pre_command": "defaults write com.apple.Notes windowStateArchive -dict-add currentNoteContainerViewMode 0 && osascript -e 'tell application \"Notes\" to make new note with properties {name:\"Lorem Ipsum\", body:\"Dolor Sit Amet\"}' && osascript -e 'tell application \"Notes\" to delete every note' -e 'tell application \"Notes\" to delete every note in folder \"Recently Deleted\"' && osascript -e 'tell application \"Notes\" to quit'",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "You are asked to create five empty notes in the Notes App. The titles should sequentially be `Lorem`, `Ipsum`, `Dolor`, `Sit`, `Amet`.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | grep -A20 \"<div><h1>Lorem\" | grep -A20 \"<div><h1>Ipsum\" | grep -A20 \"<div><h1>Dolor\" | grep -A20 \"<div><h1>Sit\" | grep -A20 \"<div><h1>Amet\" >/dev/null && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | grep -A20 \"<div><h1>Amet\" | grep -A20 \"<div><h1>Sit\" | grep -A20 \"<div><h1>Dolor\" | grep -A20 \"<div><h1>Ipsum\" | grep -A20 \"<div><h1>Lorem\" >/dev/null && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "[ $(osascript -e 'tell application \"Notes\" to get the body of every note' | grep -Eo \"<div><h1>(Lorem|Ipsum|Dolor|Sit|Amet)\" | sort -u | wc -l) -ge 5 ] && echo \"True\" || echo \"False\" ",
+            80
+        ],
+        [
+            "[ $(osascript -e 'tell application \"Notes\" to get the body of every note' | grep -Eo \"<div><h1>(Lorem|Ipsum|Dolor|Sit|Amet)\" | sort -u | wc -l) -ge 4 ] && echo \"True\" || echo \"False\" ",
+            60
+        ],
+        [
+            "[ $(osascript -e 'tell application \"Notes\" to get the body of every note' | grep -Eo \"<div><h1>(Lorem|Ipsum|Dolor|Sit|Amet)\" | sort -u | wc -l) -ge 3 ] && echo \"True\" || echo \"False\" ",
+            40
+        ],
+        [
+            "[ $(osascript -e 'tell application \"Notes\" to get the body of every note' | grep -Eo \"<div><h1>(Lorem|Ipsum|Dolor|Sit|Amet)\" | sort -u | wc -l) -ge 2 ] && echo \"True\" || echo \"False\" ",
+            20
+        ]
+    ]
+}

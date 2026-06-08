@@ -1,0 +1,15 @@
+{
+    "id": "dacf1d33-ed34-025b-dc74-a6f08258325c",
+    "force_snapshot_recovery": false,
+    "pre_command": "cp /Users/admin/Benchmark_Backup/com.apple.dock.plist ~/Library/Preferences; killall Dock",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Swap Facetime and Contacts in the Dock, keeping other apps at the original position",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to set dockItems to name of every UI element of list 1 of application process \"Dock\"' 2>/dev/null | grep -q \"Contacts, Calendar, FaceTime\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

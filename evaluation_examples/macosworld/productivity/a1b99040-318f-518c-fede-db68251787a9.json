@@ -1,0 +1,19 @@
+{
+    "id": "a1b99040-318f-518c-fede-db68251787a9",
+    "force_snapshot_recovery": true,
+    "pre_command": "defaults write com.apple.Notes windowStateArchive -dict-add currentNoteContainerViewMode 0 && osascript -e 'tell application \"Notes\" to make new note with properties {name:\"Lorem Ipsum\", body:\"Dolor Sit Amet\"}' && osascript -e 'tell application \"Notes\" to delete every note' -e 'tell application \"Notes\" to delete every note in folder \"Recently Deleted\"' && osascript -e 'tell application \"Notes\" to quit'",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Help me create a note using the app Notes, titled Meeting Minutes. The body begins with \"Agenda: Project Update\".",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | grep -q \"<h1>Meeting Minutes\" && osascript -e 'tell application \"Notes\" to get the body of every note' | grep -q \"<div>Agenda: Project Update\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | grep -q \"Meeting Minutes\" && osascript -e 'tell application \"Notes\" to get the body of every note' | grep -q \"Agenda: Project Update\" && echo \"True\" || echo \"False\" ",
+            50
+        ]
+    ]
+}

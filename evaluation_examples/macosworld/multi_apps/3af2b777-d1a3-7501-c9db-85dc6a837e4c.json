@@ -1,0 +1,14 @@
+{
+    "id": "3af2b777-d1a3-7501-c9db-85dc6a837e4c",
+    "force_snapshot_recovery": false,
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 30,
+    "instruction": "I'm doing a CTF and got this link: https://img.shields.io/badge/CTF-3%2B12%2F5%2A12%2B91%2A7%2F13-black. The calculation result of this link should be the answer to this question. Help me use the calculator to calculate it and display the result in the calculator.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "defaults read com.apple.calculator LastResultValue 2>/dev/null | awk '{printf \"%.2f\\n\", $1}' 2>/dev/null | grep -q \"80.80\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

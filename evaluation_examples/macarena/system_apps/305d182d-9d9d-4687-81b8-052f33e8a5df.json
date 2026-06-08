@@ -1,0 +1,21 @@
+{
+    "id": "305d182d-9d9d-4687-81b8-052f33e8a5df",
+    "pre_command": "osascript -e 'tell application \"Calendar\"\ntry\nset baseDate to current date\nset year of baseDate to 2025\nset month of baseDate to October\nset day of baseDate to 31\nset hours of baseDate to 0\nset minutes of baseDate to 0\nset seconds of baseDate to 0\nset targetDate to baseDate\nset nextDay to targetDate + (1 * days)\nrepeat with currentCalendar in calendars\nset eventsOnDate to (every event of currentCalendar whose start date \u2265 targetDate and start date < nextDay)\nrepeat with currentEvent in eventsOnDate\nset eventSummary to summary of currentEvent\nif eventSummary is \"Final Project Kickoff\" then\ndelete currentEvent\nend if\nend repeat\nend repeat\nset newStartDate to current date\nset year of newStartDate to 2025\nset month of newStartDate to October\nset day of newStartDate to 31\nset hours of newStartDate to 9\nset minutes of newStartDate to 0\nset seconds of newStartDate to 0\nset newEndDate to newStartDate + (1 * hours)\nset firstCalendar to first calendar\nmake new event at end of firstCalendar with properties {summary:\"Project Kickoff\", start date:newStartDate, end date:newEndDate}\nreturn true\non error\nreturn false\nend try\nend tell'",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Modify the event titled 'Project Kickoff' (which was initially set for October 31, 2025, at 9:00 AM for 1 hour) by changing its title to 'Final Project Kickoff' and moving its start time to 10:00 AM on the same date, but make it 1 hour longer.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\"\nif not (exists process \"Calendar\") then\nreturn false\nend if\nend tell\ntell application \"Calendar\"\ntry\nset baseDate to (current date)\nset year of baseDate to 2025\nset month of baseDate to October\nset day of baseDate to 31\nset hours of baseDate to 0\nset minutes of baseDate to 0\nset seconds of baseDate to 0\nset targetDate to baseDate\nset nextDay to targetDate + (1 * days)\nset foundNewEvent to false\nset oldEventGone to true\nrepeat with currentCalendar in calendars\ntry\nset eventsOnDate to (every event of currentCalendar whose start date \u2265 targetDate and start date < nextDay)\nrepeat with currentEvent in eventsOnDate\ntry\nset eventSummary to summary of currentEvent\nset eventStartDate to start date of currentEvent\nset eventEndDate to end date of currentEvent\nset startTime to time of eventStartDate\nset endTime to time of eventEndDate\nset startHours to startTime div hours\nset startMinutes to (startTime mod hours) div minutes\nset endHours to endTime div hours\nset endMinutes to (endTime mod hours) div minutes\nif eventSummary is \"Final Project Kickoff\" and startHours is 10 and startMinutes is 0 and endHours is 12 and endMinutes is 0 then\nset foundNewEvent to true\nend if\nif eventSummary is \"Project Kickoff\" and startHours is 9 and startMinutes is 0 then\nset oldEventGone to false\nend if\non error\nend try\nend repeat\non error\nend try\nend repeat\nreturn (foundNewEvent and oldEventGone)\non error\nreturn false\nend try\nend tell'",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Calendar"
+    ],
+    "categories": [
+        "System Apps"
+    ]
+}

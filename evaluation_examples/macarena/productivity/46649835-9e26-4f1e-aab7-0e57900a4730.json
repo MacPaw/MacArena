@@ -1,0 +1,21 @@
+{
+    "id": "46649835-9e26-4f1e-aab7-0e57900a4730",
+    "pre_command": "osascript -e 'tell application \"Notes\" to quit' && sleep 2 && osascript -e 'tell application \"Notes\" to try\ntry\ndelete (first folder whose name is \"Personal Ideas\")\non error\nend try\ntry\ndelete (first folder whose name is \"Meeting Notes\")\non error\nend try\ntry\ndelete (first folder whose name is \"Work Projects\")\non error\nend try\ntry\ndelete (first note whose name is \"Project A Plan\")\non error\nend try\ntry\ndelete (first note whose name is \"Budget Review\")\non error\nend try\ntry\ndelete (first note whose name is \"Team Schedule\")\non error\nend try\ntry\ndelete (first note whose name is \"Shopping List\")\non error\nend try\ntry\ndelete (first note whose name is \"Vacation Ideas\")\non error\nend try\nset personalFolder to make new folder with properties {name:\"Personal Ideas\"}\nset meetingFolder to make new folder with properties {name:\"Meeting Notes\"}\nset projectNote to make new note with properties {name:\"Project A Plan\", body:\"Project A timeline and milestones\\n- Phase 1: Research\\n- Phase 2: Development\\n- Phase 3: Testing\"}\nset budgetNote to make new note with properties {name:\"Budget Review\", body:\"Q3 Budget Analysis\\n\\nRevenue: $150K\\nExpenses: $120K\\nProfit: $30K\"}\nset scheduleNote to make new note with properties {name:\"Team Schedule\", body:\"Weekly team meetings\\nMonday 9 AM - Standup\\nWednesday 2 PM - Planning\\nFriday 4 PM - Retrospective\"}\nset shoppingNote to make new note with properties {name:\"Shopping List\", body:\"Groceries needed:\\n- Milk\\n- Bread\\n- Eggs\\n- Apples\\n- Chicken\"}\nset vacationNote to make new note with properties {name:\"Vacation Ideas\", body:\"Potential destinations:\\n- Hawaii\\n- Europe tour\\n- Mountain camping\\n- Beach resort\"}\nmove scheduleNote to meetingFolder\nmove shoppingNote to personalFolder\nmove vacationNote to personalFolder\nreturn true\non error\nreturn false\nend try'",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Organize existing notes by creating a new folder called 'Work Projects' and move notes titled 'Project A Plan' and 'Budget Review' into this folder.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Notes\" to try\nset folderExists to false\nset projectNoteInFolder to false\nset budgetNoteInFolder to false\ntry\nset workFolder to first folder whose name is \"Work Projects\"\nset folderExists to true\nset notesInFolder to notes of workFolder\nrepeat with aNote in notesInFolder\nset noteName to name of aNote\nif noteName is \"Project A Plan\" then\nset projectNoteInFolder to true\nend if\nif noteName is \"Budget Review\" then\nset budgetNoteInFolder to true\nend if\nend repeat\non error\nset folderExists to false\nend try\nreturn (folderExists and projectNoteInFolder and budgetNoteInFolder)\non error\nreturn false\nend try'",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Notes"
+    ],
+    "categories": [
+        "Productivity"
+    ]
+}

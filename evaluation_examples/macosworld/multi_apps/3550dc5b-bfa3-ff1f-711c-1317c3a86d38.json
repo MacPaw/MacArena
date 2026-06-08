@@ -1,0 +1,14 @@
+{
+    "id": "3550dc5b-bfa3-ff1f-711c-1317c3a86d38",
+    "force_snapshot_recovery": false,
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Help me find the poster for this article: https://neurips.cc/virtual/2024/poster/94798, then copy it as an image into Notes.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' 2>/dev/null | grep -q \"Dlc3I3OoYlDtopT4kbAISHSiSlL5FG9062IvAcXMj56NqFr60avETR0F0eThXR3QdEbg/aFxhq3M05wBbkiaBuPvotkl0ufDuxc9PLlN3XxFyCldqwirv7Rq53QDpqerTbmpuGkNKrd16dKIu/W9AkciVOW9RH6L1MEJdzkjIbrqziiAAAAAAAAAAAAAAAAAAAAAAAvzdfHYed9BZSHipTRqsLhuXiDxCWM9Dn5ZJUcYm06m6488TY9LqkM5EucAlmi6oKuU4aQ/pz09aKteLkaHJFsbjSBcN1f08/oR86AxuPrsjq3e3NaiuRpWWsCIM9kOniE+uqPU7vDk24xJ3qTEgxzVSp2gpB45Kf7AyUp+lip/iqKIwpUzuiTZpXQ9RVLD+W3oXR70Xvyghnp+q6CtOC3A7qdqJRpan/rGHA4NkqB+viuXJ1NaIyAPFSCRtXa/rmfBVFSauqDobAOgY4tod6pXtMv6ZtEpbtrXWh8empMRIrh0q+tQRJHRfX3R6boHSffx0fisY6ajOt3dqNa69thy3tC0+sd5dio3lz7vvUw0kf5yiIy79x5ra9DlQhuRuLnIQAAAAAAAAAAAAAAAAAAAAAAQObrbgUMFJ2S7J73jZwC1Jw9FdLI54+DkQalyCHW3UNjmkN1ymsrrOe200N/hVJW4jsBnBgpVxe6bFJACNIoKtH0q3wIddnh1xvtufbuYdzRkdmpWRMktL+umaFPcgMgpygb5KgYY19MS2v54wea5bEhjN69H1ContcV0Qu+WBd3AK0yTeLUM5EbnBBfqjRRqfpD+Vm94yMlqirFjMuubApbAqet37xwODZKgb64JlMREeShKPSd7wsm+uCi7q8pU7Jb5a6XkhhWlKu5O6/J4dSHMipLX4Mp6rW7zCk9vcRA2ensG3VZiuESKjKyYyMHLDdgWGBL6F21w+bA7Vk5Ihi379EcIaymFz6a3bryxUKXlG8lpL+w8iUzpbyRPpAcaxkAAAAAAAAAAAAAAAAAAAAAALwK/w9XATxKoLazSwAAAABJRU5ErkJggg==\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "id": "48cf0af3-0612-dbcd-14da-d5202eed6ce9",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Add Ong KC to contact with mobile number 96910380.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Contacts\" to get the value of phones of (first person whose name is \"Ong KC\")' 2>/dev/null | grep -q \"96910380\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"Contacts\" to get the value of phones of (first person whose name is \"KC Ong\")' 2>/dev/null | grep -q \"96910380\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

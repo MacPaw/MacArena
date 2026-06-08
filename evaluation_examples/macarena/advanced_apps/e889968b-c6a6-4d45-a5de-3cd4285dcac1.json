@@ -1,0 +1,21 @@
+{
+    "id": "e889968b-c6a6-4d45-a5de-3cd4285dcac1",
+    "pre_command": "osascript -e 'tell application \"Visual Studio Code\" to quit' && sleep 2 && rm -rf ~/Documents/project_alpha && mkdir -p ~/Documents/project_alpha",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 3,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Open `~/Documents/project_alpha` as a workspace, create a new subfolder named `src`, and then create a new file named `main.js` inside the `src` folder, adding a 'console.log(\"Hello from main.js\");' line.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -f ~/Documents/project_alpha/src/main.js ] && grep -q 'console.log(\"Hello from main.js\");' ~/Documents/project_alpha/src/main.js && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Visual Studio Code"
+    ],
+    "categories": [
+        "Advanced Apps"
+    ]
+}

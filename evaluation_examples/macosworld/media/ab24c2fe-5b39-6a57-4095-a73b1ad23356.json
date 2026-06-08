@@ -1,0 +1,15 @@
+{
+    "id": "ab24c2fe-5b39-6a57-4095-a73b1ad23356",
+    "force_snapshot_recovery": false,
+    "pre_command": "rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && open /Users/admin/Documents/benchmark_files/Multimedia",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 0,
+    "instruction": "In Music, where is the music progress bar? Please help me open POSPERITY in Music, then drag the progress bar to 0:10 and stop there. I want to see how you operate it.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Music\" to get player position' 2>/dev/null | awk '{if($1 > 5 && $1 < 16) print \"True\"; else print \"False\"}' ",
+            100
+        ]
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "id": "f2031b4e-3098-4eae-8b57-9153189b81ba",
+    "pre_command": "osascript -e 'tell application \"Safari\" to quit' && sleep 2 && rm -f ~/Documents/webpage.pdf",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 2,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Save a web page example.com as a PDF to the Documents under 'webpage.pdf'.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -f ~/Documents/webpage.pdf ] && [ -s ~/Documents/webpage.pdf ] && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Safari"
+    ],
+    "categories": [
+        "System Apps"
+    ]
+}

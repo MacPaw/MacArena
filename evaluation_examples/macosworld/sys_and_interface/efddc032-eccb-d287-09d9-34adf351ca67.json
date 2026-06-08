@@ -1,0 +1,19 @@
+{
+    "id": "efddc032-eccb-d287-09d9-34adf351ca67",
+    "force_snapshot_recovery": false,
+    "pre_command": "osascript -e 'tell app \"System Settings\" to quit'",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Someone else would be temporarily using my Mac. Help me create an account without a password. This account should be prohibited from changing my system settings, and that all changes made by this account (like files placed on the desktop) will not be saved upon logout.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "defaults read /Library/Preferences/com.apple.loginwindow GuestEnabled | grep -q 1 && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get name of first process whose frontmost is true' 2>/dev/null | grep -q \"System Settings\" && echo \"True\" || echo \"False\" ",
+            10
+        ]
+    ]
+}

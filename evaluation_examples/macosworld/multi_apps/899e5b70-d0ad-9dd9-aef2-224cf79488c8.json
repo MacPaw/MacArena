@@ -1,0 +1,16 @@
+{
+    "id": "899e5b70-d0ad-9dd9-aef2-224cf79488c8",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Numbers\" to activate' && sleep 5 && osascript -e 'tell application \"Numbers\" to tell (make new document with properties {document template:template \"Blank\"}) to tell table 1 of sheet 1 to set {column count, row count, header row count, header column count} to {2, 4, 0, 0}' && osascript -e 'tell application \"Numbers\" to set value of cell \"A1\" of table 1 of sheet 1 of document 1 to \"Alice\"' && osascript -e 'tell application \"Numbers\" to set value of cell \"A2\" of table 1 of sheet 1 of document 1 to \"Bob\"' && osascript -e 'tell application \"Numbers\" to set value of cell \"A3\" of table 1 of sheet 1 of document 1 to \"Charlie\"' && osascript -e 'tell application \"Numbers\" to set value of cell \"A4\" of table 1 of sheet 1 of document 1 to \"Average\"' && osascript -e 'tell application \"Numbers\" to set value of cell \"B1\" of table 1 of sheet 1 of document 1 to \"91\"' && osascript -e 'tell application \"Numbers\" to set value of cell \"B2\" of table 1 of sheet 1 of document 1 to \"97\"' && osascript -e 'tell application \"Numbers\" to set value of cell \"B3\" of table 1 of sheet 1 of document 1 to \"95\"'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Use the system's built-in calculator to calculate the average score of the students, then round the average down, and fill it into the table (remember to press Enter, otherwise the numbers won't save).",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "defaults read com.apple.calculator LastResultValue 2>/dev/null | awk '{printf \"%.2f\\n\", $1}' 2>/dev/null | grep -q \"94.33\" && osascript -e 'tell application \"Numbers\" to tell table 1 of sheet 1 of document 1 to get value of cell \"B4\"' 2>/dev/null | grep -q \"94\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

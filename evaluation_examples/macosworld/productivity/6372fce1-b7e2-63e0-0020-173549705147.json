@@ -1,0 +1,16 @@
+{
+    "id": "6372fce1-b7e2-63e0-0020-173549705147",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Numbers\" to activate' && sleep 5 && osascript -e 'tell application \"Numbers\" to tell (make new document with properties {document template:template \"Blank\"}) to tell table 1 of sheet 1 to set {column count, row count, header row count, header column count} to {2, 4, 0, 0}'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Name the current table with title \"GDP (PPP)\". Click elsewhere or press enter to make sure the change is stored.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Numbers\" to tell table 1 of sheet 1 of document 1 to return name' 2>/dev/null | grep -q \"GDP (PPP)\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

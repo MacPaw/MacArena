@@ -1,0 +1,21 @@
+{
+    "id": "a08d4ef6-e2de-476a-8097-d3a07776d619",
+    "pre_command": "osascript -e 'tell application \"Anaconda-Navigator\" to quit' && sleep 2 && { conda env list | grep -q 'data_analysis' && conda env remove -n data_analysis -y || true; } && conda create -n data_analysis -y && conda install -n data_analysis requests=2.31.0",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 10,
+    "instruction": "Update all packages in the 'data_analysis' virtual environment to the latest versions via the Anaconda interface.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ $(conda list -n data_analysis --revisions | grep '(rev \\d)' | wc -l) -gt 2 ] && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Anaconda-Navigator"
+    ],
+    "categories": [
+        "Advanced Apps"
+    ]
+}

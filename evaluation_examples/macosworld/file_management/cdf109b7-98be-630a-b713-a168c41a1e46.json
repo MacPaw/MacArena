@@ -1,0 +1,15 @@
+{
+    "id": "cdf109b7-98be-630a-b713-a168c41a1e46",
+    "force_snapshot_recovery": false,
+    "pre_command": "open /Users/admin/Desktop; osascript -e 'tell application \"Finder\" to close windows' && rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && osascript -e 'tell application \"Finder\" to activate'",
+    "before_action_delay_seconds": 15,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Change the way Finder displays items to \"list view\".",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Finder\" to get current view of front Finder window' | grep -q \"list\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "id": "523621a6-149f-3bb7-5193-401d4bd45b97",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Check Boeing's stock one-day detailed stock price in the Stocks app.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"BA\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

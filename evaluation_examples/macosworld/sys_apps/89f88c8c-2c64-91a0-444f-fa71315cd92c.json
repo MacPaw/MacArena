@@ -1,0 +1,18 @@
+{
+    "id": "89f88c8c-2c64-91a0-444f-fa71315cd92c",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Add Yumi Asai to contact with mobile number 96981 under the group \"Work\". If the group does not exist, then create it.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Contacts\" to value of phone of first person of group \"Work\" whose name is \"Yumi Asai\"' 2>/dev/null | grep -q \"96981\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"Contacts\" to value of phone of first person whose name is \"Yumi Asai\"' 2>/dev/null | grep -q \"96981\" && echo \"True\" || echo \"False\" ",
+            50
+        ]
+    ]
+}

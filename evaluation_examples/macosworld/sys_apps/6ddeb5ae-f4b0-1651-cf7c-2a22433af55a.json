@@ -1,0 +1,14 @@
+{
+    "id": "6ddeb5ae-f4b0-1651-cf7c-2a22433af55a",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Launch \"Stocks\" and click AAPL to view its detailed stock price.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"AAPL\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

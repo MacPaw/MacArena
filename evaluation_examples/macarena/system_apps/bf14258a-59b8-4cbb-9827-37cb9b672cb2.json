@@ -1,0 +1,21 @@
+{
+    "id": "bf14258a-59b8-4cbb-9827-37cb9b672cb2",
+    "pre_command": "osascript -e 'tell application \"Contacts\" to quit' && sleep 2 && osascript -e 'tell application \"System Events\"\nset appRunning to (exists process \"Contacts\")\nend tell\nif not appRunning then\ntell application \"Contacts\" to activate\ndelay 3\nend if\ntell application \"Contacts\"\ntry\ntry\ndelete (first person whose name is \"Jane Smith\")\nend try\ntry\ndelete (first person whose name is \"Alex Johnson\")\nend try\ntry\ndelete (first person whose name is \"Emily Davis\")\nend try\ntry\ndelete (first group whose name is \"Project Team\")\nend try\nsave\nset contact1 to make new person with properties {first name:\"Jane\", last name:\"Smith\"}\nset contact2 to make new person with properties {first name:\"Alex\", last name:\"Johnson\"}\nset contact3 to make new person with properties {first name:\"Emily\", last name:\"Davis\"}\nsave\nreturn true\non error\nreturn false\nend try\nend tell' && osascript -e 'tell application \"Contacts\" to quit' && sleep 2",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 2,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Add a new list 'Project Team' and include the contacts 'Jane Smith', 'Alex Johnson', and 'Emily Davis'.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Contacts\" to try\nset projectGroup to first group whose name is \"Project Team\"\nset groupMembers to people of projectGroup\nset janeFound to false\nset alexFound to false\nset emilyFound to false\nrepeat with aMember in groupMembers\nset memberName to name of aMember\nif memberName is \"Jane Smith\" then\nset janeFound to true\nelse if memberName is \"Alex Johnson\" then\nset alexFound to true\nelse if memberName is \"Emily Davis\" then\nset emilyFound to true\nend if\nend repeat\nif janeFound and alexFound and emilyFound then\nreturn true\nelse\nreturn false\nend if\non error\nreturn false\nend try'",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Contacts"
+    ],
+    "categories": [
+        "System Apps"
+    ]
+}

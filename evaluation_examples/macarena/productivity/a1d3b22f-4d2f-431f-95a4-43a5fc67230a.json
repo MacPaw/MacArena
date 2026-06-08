@@ -1,0 +1,21 @@
+{
+    "id": "a1d3b22f-4d2f-431f-95a4-43a5fc67230a",
+    "pre_command": "osascript -e 'tell application \"LibreOffice\" to quit' && sleep 2 && rm -f ~/Documents/Sorted_Employee_List.csv && [ -f ~/Downloads/employee_list.csv ] || cat > ~/Downloads/employee_list.csv << 'EOF'\nFirst Name,Last Name,Department,Salary,Email\nJohn,Smith,Engineering,75000,john.smith@company.com\nSarah,Johnson,Marketing,68000,sarah.johnson@company.com\nMichael,Brown,Sales,72000,michael.brown@company.com\nEmily,Davis,HR,65000,emily.davis@company.com\nDavid,Wilson,Engineering,80000,david.wilson@company.com\nLisa,Anderson,Finance,70000,lisa.anderson@company.com\nRobert,Taylor,Sales,69000,robert.taylor@company.com\nJennifer,Miller,Marketing,67000,jennifer.miller@company.com\nWilliam,Garcia,Engineering,78000,william.garcia@company.com\nJessica,Martinez,HR,66000,jessica.martinez@company.com\nChristopher,Rodriguez,Finance,73000,christopher.rodriguez@company.com\nAmanda,Lee,Sales,71000,amanda.lee@company.com\nEOF",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Import the CSV file 'employee_list.csv' from the Downloads folder into Calc, sort the data by last names, and save it as 'Sorted_Employee_List.csv' in the Documents folder.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -f ~/Documents/Sorted_Employee_List.csv ] && [ -s ~/Documents/Sorted_Employee_List.csv ] && python3 -c \"import csv, os, sys; path=os.path.expanduser('~/Documents/Sorted_Employee_List.csv'); f=open(path, 'r'); reader=csv.DictReader(f); rows=list(reader); f.close(); last_names=[row['Last Name'].strip() for row in rows if 'Last Name' in row and row['Last Name']]; is_sorted=all(last_names[i].lower() <= last_names[i+1].lower() for i in range(len(last_names)-1)) if len(last_names) > 1 else False; sys.exit(0 if is_sorted else 1)\" && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "LibreOffice"
+    ],
+    "categories": [
+        "Productivity"
+    ]
+}

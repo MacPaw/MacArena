@@ -1,0 +1,21 @@
+{
+    "id": "77c3a6df-7d7c-4487-b06a-6e737c4459d2",
+    "pre_command": "osascript -e 'tell application \"OBS\" to quit' && sleep 2 && rm -f ~/Movies/*",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 10,
+    "instruction": "Record a video while playing a game. Start a recording session and play a game for at least 5 minutes. Stop the recording and save the video file to ~/Movies folder.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -d ~/Movies ] && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "OBS"
+    ],
+    "categories": [
+        "Advanced Apps"
+    ]
+}

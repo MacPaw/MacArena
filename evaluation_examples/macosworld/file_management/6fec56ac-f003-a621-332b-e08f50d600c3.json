@@ -1,0 +1,15 @@
+{
+    "id": "6fec56ac-f003-a621-332b-e08f50d600c3",
+    "force_snapshot_recovery": false,
+    "pre_command": "open /Users/admin/Desktop; osascript -e 'tell application \"Finder\" to close windows' && rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && open /Users/admin/Documents/benchmark_files/Multimedia/Zipped",
+    "before_action_delay_seconds": 15,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Unzip the zip file to the current directory.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "if [ -f \"/Users/admin/Documents/benchmark_files/Multimedia/Zipped/unzipped_contents/Matterhorn Man.txt\" ]; then echo \"True\"; else echo \"False\"; fi ",
+            100
+        ]
+    ]
+}

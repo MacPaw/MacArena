@@ -1,0 +1,18 @@
+{
+    "id": "670cda14-ba46-9cea-bbdd-80bc7b1a0de1",
+    "force_snapshot_recovery": false,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "I wish to check the System Regulatory Certification. Please help me find this document and view it.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"System Regulatory Certification\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get name of every process whose name is \"System Information\"' 2>/dev/null | grep -q \"System Information\" && echo \"True\" || echo \"False\" ",
+            50
+        ]
+    ]
+}

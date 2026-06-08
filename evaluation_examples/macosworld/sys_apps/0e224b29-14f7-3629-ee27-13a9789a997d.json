@@ -1,0 +1,15 @@
+{
+    "id": "0e224b29-14f7-3629-ee27-13a9789a997d",
+    "force_snapshot_recovery": true,
+    "pre_command": "",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Launch Dictionary, and open the window (usually the about window) that shows its version.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXChildren\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep \"Dictionary\" | grep -q \"Version\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

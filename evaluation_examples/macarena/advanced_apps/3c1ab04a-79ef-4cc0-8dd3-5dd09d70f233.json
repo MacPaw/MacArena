@@ -1,0 +1,21 @@
+{
+    "id": "3c1ab04a-79ef-4cc0-8dd3-5dd09d70f233",
+    "pre_command": "osascript -e 'tell application \"Xcode\" to quit' && sleep 2 && rm -rf ~/Documents/XcodeProjects/MySwiftApp && mkdir -p ~/Documents/XcodeProjects",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 10,
+    "instruction": "Create a new iOS App project in Xcode, named 'MySwiftApp', and save it within the 'XcodeProjects' folder in your 'Documents' directory.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -d ~/Documents/XcodeProjects/MySwiftApp/MySwiftApp.xcodeproj ] && [ -f ~/Documents/XcodeProjects/MySwiftApp/MySwiftApp.xcodeproj/project.pbxproj ] && [ -s ~/Documents/XcodeProjects/MySwiftApp/MySwiftApp.xcodeproj/project.pbxproj ] && grep -q 'com.apple.product-type.application' ~/Documents/XcodeProjects/MySwiftApp/MySwiftApp.xcodeproj/project.pbxproj && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Xcode"
+    ],
+    "categories": [
+        "Advanced Apps"
+    ]
+}

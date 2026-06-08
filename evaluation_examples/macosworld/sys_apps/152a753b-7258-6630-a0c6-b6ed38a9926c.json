@@ -1,0 +1,14 @@
+{
+    "id": "152a753b-7258-6630-a0c6-b6ed38a9926c",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Calculate sin(pi/6) in radians using the Calculator.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "defaults read com.apple.calculator LastResultValue 2>/dev/null | awk '{printf \"%.6f\\n\", $1}' 2>/dev/null | grep -q \"0.500000\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

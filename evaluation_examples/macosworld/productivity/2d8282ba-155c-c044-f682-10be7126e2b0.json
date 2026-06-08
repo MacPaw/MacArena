@@ -1,0 +1,43 @@
+{
+    "id": "2d8282ba-155c-c044-f682-10be7126e2b0",
+    "force_snapshot_recovery": true,
+    "pre_command": "defaults write com.apple.Notes windowStateArchive -dict-add currentNoteContainerViewMode 0 && osascript -e 'tell application \"Notes\" to make new note with properties {name:\"Lorem Ipsum\", body:\"Dolor Sit Amet\"}' && osascript -e 'tell application \"Notes\" to delete every note' -e 'tell application \"Notes\" to delete every note in folder \"Recently Deleted\"' && osascript -e 'tell application \"Notes\" to quit'",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Create a checklist in Notes, sequentially containing `192.168.0.1`, `192.168.1.1`, `192.168.123.234`, `192.168.255.239`, and `192.168.10.5`.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | grep -A20 \"192.168.0.1\" | grep -A20 \"192.168.1.1\" | grep -A20 \"192.168.123.234\" | grep -A20 \"192.168.255.239\" | grep -A20 \"192.168.10.5\" >/dev/null && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "[ $(osascript -e 'tell application \"Notes\" to get the body of every note' | grep -Eo \"<li>(192.168.0.1|192.168.1.1|192.168.123.234|192.168.255.239|192.168.10.5)\" | sort -u | wc -l) -ge 5 ] && echo \"True\" || echo \"False\" ",
+            80
+        ],
+        [
+            "[ $(osascript -e 'tell application \"Notes\" to get the body of every note' | grep -Eo \"<li>(192.168.0.1|192.168.1.1|192.168.123.234|192.168.255.239|192.168.10.5)\" | sort -u | wc -l) -ge 4 ] && echo \"True\" || echo \"False\" ",
+            60
+        ],
+        [
+            "[ $(osascript -e 'tell application \"Notes\" to get the body of every note' | grep -Eo \"<li>(192.168.0.1|192.168.1.1|192.168.123.234|192.168.255.239|192.168.10.5)\" | sort -u | wc -l) -ge 3 ] && echo \"True\" || echo \"False\" ",
+            40
+        ],
+        [
+            "[ $(osascript -e 'tell application \"Notes\" to get the body of every note' | grep -Eo \"<li>(192.168.0.1|192.168.1.1|192.168.123.234|192.168.255.239|192.168.10.5)\" | sort -u | wc -l) -ge 2 ] && echo \"True\" || echo \"False\" ",
+            20
+        ],
+        [
+            "[ $(osascript -e 'tell application \"Notes\" to get the body of every note' | grep -Eo \"(192.168.0.1|192.168.1.1|192.168.123.234|192.168.255.239|192.168.10.5)\" | sort -u | wc -l) -ge 5 ] && echo \"True\" || echo \"False\" ",
+            60
+        ],
+        [
+            "[ $(osascript -e 'tell application \"Notes\" to get the body of every note' | grep -Eo \"(192.168.0.1|192.168.1.1|192.168.123.234|192.168.255.239|192.168.10.5)\" | sort -u | wc -l) -ge 4 ] && echo \"True\" || echo \"False\" ",
+            40
+        ],
+        [
+            "[ $(osascript -e 'tell application \"Notes\" to get the body of every note' | grep -Eo \"(192.168.0.1|192.168.1.1|192.168.123.234|192.168.255.239|192.168.10.5)\" | sort -u | wc -l) -ge 3 ] && echo \"True\" || echo \"False\" ",
+            20
+        ]
+    ]
+}

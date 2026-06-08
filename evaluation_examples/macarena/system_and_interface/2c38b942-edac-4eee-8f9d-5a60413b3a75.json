@@ -1,0 +1,21 @@
+{
+    "id": "2c38b942-edac-4eee-8f9d-5a60413b3a75",
+    "pre_command": "rm -f ~/Desktop/Project_File_List.txt && mkdir -p ~/Desktop/Projects && echo \"Sample document content\" > ~/Desktop/Projects/sample.txt && echo \"Project notes and details\" > ~/Desktop/Projects/project_notes.md && echo \"Configuration settings\" > ~/Desktop/Projects/config.json && echo \"Main application code\" > ~/Desktop/Projects/main.py && echo \"Stylesheet definitions\" > ~/Desktop/Projects/styles.css && echo \"README documentation\" > ~/Desktop/Projects/README.md && mkdir -p ~/Desktop/Projects/subfolder && echo \"Nested file content\" > ~/Desktop/Projects/subfolder/nested_file.log && echo \"Database backup\" > ~/Desktop/Projects/subfolder/backup.sql && osascript -e 'tell application \"Automator\" to quit' && sleep 2 && rm -f ~/Desktop/Project_File_List.txt",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 0,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Create an Automator workflow that scans all files in the '~/Desktop/Projects' folder and writes a list of their filenames into a new text file called 'Project_File_List.txt' saved on the Desktop.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -f ~/Desktop/Project_File_List.txt ] && [ -s ~/Desktop/Project_File_List.txt ] && [ -d ~/Desktop/Projects ] && PROJECT_COUNT=$(find ~/Desktop/Projects -type f | wc -l) && LIST_COUNT=$(grep -c . ~/Desktop/Project_File_List.txt) && [ $PROJECT_COUNT -eq $LIST_COUNT ] && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Automator"
+    ],
+    "categories": [
+        "System and Interface"
+    ]
+}

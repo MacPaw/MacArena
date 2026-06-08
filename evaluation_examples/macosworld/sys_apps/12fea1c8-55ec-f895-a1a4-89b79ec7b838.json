@@ -1,0 +1,14 @@
+{
+    "id": "12fea1c8-55ec-f895-a1a4-89b79ec7b838",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Help me use the Calculator to calculate the result of the following question: Car A and B travel in the same direction. Car A travels at a speed of 60 km/h. Car B travels at a speed of 80 km/h, but is 20 km behind Car A. How many hours will it take for Car B to catch up with Car A?",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "defaults read com.apple.calculator LastResultValue 2>/dev/null | awk '{printf \"%.6f\\n\", $1}' 2>/dev/null | grep -q \"1.000000\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

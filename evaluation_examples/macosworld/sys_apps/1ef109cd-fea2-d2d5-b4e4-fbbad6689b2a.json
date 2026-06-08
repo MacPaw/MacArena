@@ -1,0 +1,14 @@
+{
+    "id": "1ef109cd-fea2-d2d5-b4e4-fbbad6689b2a",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Launch the app \"Chess\".",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get name of first process whose frontmost is true' | grep -q \"Chess\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

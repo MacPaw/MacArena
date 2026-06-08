@@ -1,0 +1,24 @@
+{
+    "id": "e9b2a963-60e1-8bf7-8849-224f257ab665",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Keynote\" to activate' && sleep 5 && osascript -e 'tell application \"Keynote\" to make new document with properties {document theme:theme \"Dynamic Waves Dark\"}'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Apart from the beginning slide, help me create three more slides, and then navigate to slide number 2.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Keynote\" to get the count of slides of the front document' | grep -q \"4\" 2>/dev/null && osascript -e 'tell application \"Keynote\" to get the slide number of the current slide of the front document' | grep -q \"2\" 2>/dev/null && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"Keynote\" to get the count of slides of the front document' | grep -q \"4\" 2>/dev/null && echo \"True\" || echo \"False\" ",
+            50
+        ],
+        [
+            "osascript -e 'tell application \"Keynote\" to get the slide number of the current slide of the front document' | grep -q \"2\" 2>/dev/null && echo \"True\" || echo \"False\" ",
+            50
+        ]
+    ]
+}

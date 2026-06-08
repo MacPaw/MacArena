@@ -1,0 +1,16 @@
+{
+    "id": "3b6fddf4-717d-88eb-95ba-8551750cd75f",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Keynote\" to activate'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Help me create an empty slide with an aspect ratio of 4:3.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Keynote\" to set slideWidth to width of document 1' -e 'tell application \"Keynote\" to set slideHeight to height of document 1' -e 'slideWidth / slideHeight * 9' | grep -q \"12\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

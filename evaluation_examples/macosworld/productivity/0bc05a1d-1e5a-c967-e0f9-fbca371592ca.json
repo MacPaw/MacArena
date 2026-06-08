@@ -1,0 +1,15 @@
+{
+    "id": "0bc05a1d-1e5a-c967-e0f9-fbca371592ca",
+    "force_snapshot_recovery": true,
+    "pre_command": "defaults write com.apple.Notes windowStateArchive -dict-add currentNoteContainerViewMode 0 && osascript -e 'tell application \"Notes\" to make new note with properties {name:\"Lorem Ipsum\", body:\"Dolor Sit Amet\"}' && osascript -e 'tell application \"Notes\" to delete every note' -e 'tell application \"Notes\" to delete every note in folder \"Recently Deleted\"' && osascript -e 'tell application \"Notes\" to quit'",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Launch the Notes app and create an empty table.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | grep -q \"<object><table\" >/dev/null && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

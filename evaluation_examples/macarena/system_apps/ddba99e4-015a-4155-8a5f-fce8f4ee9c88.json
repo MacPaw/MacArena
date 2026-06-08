@@ -1,0 +1,21 @@
+{
+    "id": "ddba99e4-015a-4155-8a5f-fce8f4ee9c88",
+    "pre_command": "osascript -e 'tell application \"Calendar\" to quit' && sleep 2 && osascript -e 'tell application \"Calendar\" to try\nrepeat with currentCalendar in calendars\ntry\nif name of currentCalendar is \"Family Events\" then\ndelete currentCalendar\nend if\nend try\nend repeat\nset familyCalendar to make new calendar with properties {name:\"Family Events\"}\nset eventDate to (current date) + (7 * days)\nset hours of eventDate to 15\nset minutes of eventDate to 0\nset seconds of eventDate to 0\nset endDate to eventDate + (2 * hours)\nset newEvent to make new event at end of events of familyCalendar with properties {summary:\"Family Reunion\", start date:eventDate, end date:endDate}\nsave\nreturn true\non error\nreturn false\nend try'",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 2,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Export the 'Family Events' calendar to family_events.ics on Desktop for sharing with family members.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -f ~/Desktop/family_events.ics ] && [ -s ~/Desktop/family_events.ics ] && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Calendar"
+    ],
+    "categories": [
+        "System Apps"
+    ]
+}

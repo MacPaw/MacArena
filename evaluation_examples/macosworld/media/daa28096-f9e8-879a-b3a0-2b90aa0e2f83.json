@@ -1,0 +1,15 @@
+{
+    "id": "daa28096-f9e8-879a-b3a0-2b90aa0e2f83",
+    "force_snapshot_recovery": false,
+    "pre_command": "osascript -e 'tell application \"Music\" to activate'",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Where can I adjust the volume in the Music app? Please help me set the volume to 50%.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Music\" to get sound volume' 2>/dev/null | awk '{if($1 > 45 && $1 < 55) print \"True\"; else print \"False\"}' ",
+            100
+        ]
+    ]
+}

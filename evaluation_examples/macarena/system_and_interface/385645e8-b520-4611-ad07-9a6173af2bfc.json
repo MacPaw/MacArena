@@ -1,0 +1,21 @@
+{
+    "id": "385645e8-b520-4611-ad07-9a6173af2bfc",
+    "pre_command": "osascript -e 'tell application \"System Settings\" to quit' && sleep 2 && osascript -e 'tell application \"System Events\" to try\\nset picture of current desktop to \"/System/Library/CoreServices/DefaultDesktop.heic\"\\nreturn true\\non error\\nreturn false\\nend try'",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 3,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Set the desktop background of the primary display to the default macOS 'Ventura' wallpaper from the system's default pictures library.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to try\nset currentWallpaper to picture of current desktop\nreturn (currentWallpaper as string contains \"Ventura\")\non error\nreturn false\nend try'",
+            100
+        ]
+    ],
+    "related_apps": [
+        "System Settings"
+    ],
+    "categories": [
+        "System and Interface"
+    ]
+}

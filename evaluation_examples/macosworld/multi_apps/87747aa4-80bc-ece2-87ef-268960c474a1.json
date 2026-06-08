@@ -1,0 +1,15 @@
+{
+    "id": "87747aa4-80bc-ece2-87ef-268960c474a1",
+    "force_snapshot_recovery": false,
+    "pre_command": "defaults write com.apple.Notes windowStateArchive -dict-add currentNoteContainerViewMode 0 && osascript -e 'tell application \"Notes\" to make new note with properties {name:\"Lorem Ipsum\", body:\"Dolor Sit Amet\"}' && osascript -e 'tell application \"Notes\" to delete every note' -e 'tell application \"Notes\" to delete every note in folder \"Recently Deleted\"' && osascript -e 'tell application \"Notes\" to make new note with properties {name:\"Badge API\", body:\"https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg\"}'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "There's a Badge API in my Notes that can generate vector badges using arXiv article numbers. Please replace 1234.56789 with 2406.09026 in it, then download the badge to the desktop.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "cat /Users/admin/Desktop/arXiv-2406.09026-b31b1b.svg 2>/dev/null | grep -q \">2406.09026<\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

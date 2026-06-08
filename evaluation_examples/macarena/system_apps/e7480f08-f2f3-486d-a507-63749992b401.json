@@ -1,0 +1,21 @@
+{
+    "id": "e7480f08-f2f3-486d-a507-63749992b401",
+    "pre_command": "osascript -e 'tell application \"Contacts\"\ntry\ndelete (first person whose name is \"John Doe\")\nsave\nreturn true\non error\nreturn false\nend try\nend tell' && osascript -e 'tell application \"Contacts\" to quit' && sleep 2",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 2,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Create a new contact for a business colleague named 'John Doe', including his phone number '555-1234', email 'john.doe@example.com', and company 'Example Corp'.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Contacts\"\nset foundContact to (first person whose name is \"John Doe\")\nset contactCompany to organization of foundContact\nset phoneValue to value of phone 1 of foundContact\nset emailValue to value of email 1 of foundContact\nif contactCompany is \"Example Corp\" and phoneValue is \"555-1234\" and emailValue is \"john.doe@example.com\" then\nreturn true\nelse\nreturn false\nend if\nend tell'",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Contacts"
+    ],
+    "categories": [
+        "System Apps"
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "id": "21bf043d-935e-1499-b374-9c2f483df890",
+    "force_snapshot_recovery": false,
+    "pre_command": "osascript -e 'tell application \"Music\" to activate'",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Help me enlarge the list size, but don't apply the changes.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to tell process \"Music\" to get value of pop up button 1 of group 1 of window \"General\"' 2>/dev/null | grep -q \"Large\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

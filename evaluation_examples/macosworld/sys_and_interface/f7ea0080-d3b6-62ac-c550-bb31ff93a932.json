@@ -1,0 +1,19 @@
+{
+    "id": "f7ea0080-d3b6-62ac-c550-bb31ff93a932",
+    "force_snapshot_recovery": false,
+    "pre_command": "osascript -e 'tell app \"System Settings\" to quit'",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Go to Siri Settings.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"Siri\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get name of first process whose frontmost is true' 2>/dev/null | grep -q \"System Settings\" && echo \"True\" || echo \"False\" ",
+            10
+        ]
+    ]
+}

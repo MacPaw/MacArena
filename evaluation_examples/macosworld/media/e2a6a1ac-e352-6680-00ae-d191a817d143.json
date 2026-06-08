@@ -1,0 +1,15 @@
+{
+    "id": "e2a6a1ac-e352-6680-00ae-d191a817d143",
+    "force_snapshot_recovery": false,
+    "pre_command": "rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && open /Users/admin/Documents/benchmark_files/Multimedia",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Open the mp4 video using Quicktime, and start playing it.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"QuickTime Player\" to get playing of document 1' 2>/dev/null | grep -q \"true\" && osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"1147775047-1-208.mp4\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

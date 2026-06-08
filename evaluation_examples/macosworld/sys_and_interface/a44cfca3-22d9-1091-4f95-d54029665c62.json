@@ -1,0 +1,23 @@
+{
+    "id": "a44cfca3-22d9-1091-4f95-d54029665c62",
+    "force_snapshot_recovery": false,
+    "pre_command": "osascript -e 'tell app \"System Settings\" to quit' && defaults write com.apple.controlcenter \"NSStatusItem Visible AirDrop\" -int 0",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Let AirDrop show in the menu bar.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "defaults read com.apple.controlcenter \"NSStatusItem Visible AirDrop\" 2>/dev/null | grep -q \"1\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"Control Center\" && echo \"True\" || echo \"False\" ",
+            50
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get name of first process whose frontmost is true' 2>/dev/null | grep -q \"System Settings\" && echo \"True\" || echo \"False\" ",
+            10
+        ]
+    ]
+}

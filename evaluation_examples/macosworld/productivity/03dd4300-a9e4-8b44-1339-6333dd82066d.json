@@ -1,0 +1,24 @@
+{
+    "id": "03dd4300-a9e4-8b44-1339-6333dd82066d",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Pages\" to activate' && sleep 5 && osascript -e 'tell application \"Pages\" to make new document with properties {document template:template \"Essay\"}'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 0,
+    "instruction": "In the current essay template, please help me change the Author Name to Angelina, and the Instructor's Name field to \"2510770A\".",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Pages\" to get body text of front document' 2>/dev/null | head -n 2 | sed -n '1p' | grep -q \"^Angelina$\" && osascript -e 'tell application \"Pages\" to get body text of front document' 2>/dev/null | head -n 2 | sed -n '2p' | grep -q \"^2510770A$\" && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"Pages\" to get body text of front document' 2>/dev/null | head -n 2 | grep -q \"Angelina\" && echo \"True\" || echo \"False\" ",
+            50
+        ],
+        [
+            "osascript -e 'tell application \"Pages\" to get body text of front document' 2>/dev/null | head -n 2 | grep -q \"2510770A\" && echo \"True\" || echo \"False\" ",
+            50
+        ]
+    ]
+}

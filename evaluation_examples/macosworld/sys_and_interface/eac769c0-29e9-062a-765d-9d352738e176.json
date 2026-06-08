@@ -1,0 +1,27 @@
+{
+    "id": "eac769c0-29e9-062a-765d-9d352738e176",
+    "force_snapshot_recovery": false,
+    "pre_command": "osascript -e \"set volume output volume 71\"",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Help me reduce the volume to 25%.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'set volumeOutput to output volume of (get volume settings)' -e 'return volumeOutput >= 20 and volumeOutput <= 30' ",
+            100
+        ],
+        [
+            "osascript -e 'set volumeOutput to output volume of (get volume settings)' -e 'return volumeOutput >= 15 and volumeOutput <= 35' ",
+            75
+        ],
+        [
+            "osascript -e 'set volumeOutput to output volume of (get volume settings)' -e 'return volumeOutput >= 10 and volumeOutput <= 40' ",
+            50
+        ],
+        [
+            "osascript -e 'set volumeOutput to output volume of (get volume settings)' -e 'return volumeOutput >= 5 and volumeOutput <= 45' ",
+            25
+        ]
+    ]
+}

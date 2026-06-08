@@ -1,0 +1,21 @@
+{
+    "id": "44b39163-bd89-4aee-8752-36254f37aa74",
+    "pre_command": "osascript -e 'tell application \"Keka\" to quit' && sleep 2 && rm -f ~/Documents/Important\\ Documents.tar && rm -rf ~/Documents/Important\\ Documents && mkdir -p ~/Documents/Important\\ Documents && echo \"hello\" > ~/Documents/Important\\ Documents/hello.txt",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Create a TAR archive from the 'Important Documents' folder in Documents without compression and save it to Documents.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -s ~/Documents/Important\\ Documents.tar ] && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Keka"
+    ],
+    "categories": [
+        "File Management"
+    ]
+}

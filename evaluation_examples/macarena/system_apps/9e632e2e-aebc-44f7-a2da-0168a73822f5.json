@@ -1,0 +1,21 @@
+{
+    "id": "9e632e2e-aebc-44f7-a2da-0168a73822f5",
+    "pre_command": "osascript -e 'tell application \"Contacts\"\n    set firstName to \"Robert\"\n    set lastName to \"Green\"\n    try\n        set matchingPeople to (people whose first name is firstName and last name is lastName)\n        if (count of matchingPeople) > 0 then\n            repeat with thePerson in matchingPeople\n                delete thePerson\n            end repeat\n            save\n        else\n        end if\n    on error errMsg\n    end try\n    set thePerson to make new person with properties {first name:firstName, last name:lastName}\n    tell thePerson\n        make new phone at end of phones with properties {label:\"mobile\", value:\"(555) 123-4567\"}\n    end tell\n    tell thePerson\n        make new phone at end of phones with properties {label:\"mobile\", value:\"(555) 987-6543\"}\n    end tell\n    tell thePerson\n        make new phone at end of phones with properties {label:\"home\", value:\"(555) 555-1212\"}\n    end tell\n    save\nend tell'; osascript -e 'tell application \"Contacts\" to quit'; sleep 2",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Perform a complex edit on the existing contact 'Robert Green': change their home phone number to '555-789-0123', add a new job title 'Senior Developer', and remove any existing mobile phone number.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Contacts\" to try\nset robertContact to first person whose name is \"Robert Green\"\nset hasCorrectHomePhone to false\nset hasJobTitle to false\nset hasMobilePhone to false\ntry\nset phoneList to phones of robertContact\nrepeat with aPhone in phoneList\nset phoneLabel to label of aPhone\nset phoneValue to value of aPhone\nset normalizedPhone to (do shell script \"echo \" & quoted form of phoneValue & \" | tr -d \\\"() -\\\"\")\nif phoneLabel is \"home\" and normalizedPhone contains \"5557890123\" then\nset hasCorrectHomePhone to true\nend if\nif phoneLabel is \"mobile\" or phoneLabel is \"iPhone\" then\nset hasMobilePhone to true\nend if\nend repeat\nend try\ntry\nset jobTitle to job title of robertContact\nif jobTitle is \"Senior Developer\" then\nset hasJobTitle to true\nend if\non error\nend try\nif (hasCorrectHomePhone and hasJobTitle and not hasMobilePhone) then\nreturn \"True\"\nelse\nreturn \"False\"\nend if\non error\nreturn \"False\"\nend try'",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Contacts"
+    ],
+    "categories": [
+        "System Apps"
+    ]
+}

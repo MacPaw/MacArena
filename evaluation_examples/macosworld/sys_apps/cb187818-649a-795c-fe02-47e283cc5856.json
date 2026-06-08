@@ -1,0 +1,14 @@
+{
+    "id": "cb187818-649a-795c-fe02-47e283cc5856",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Create a new board in Freeform, open it and name it as \"Everything\".",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"Everything\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

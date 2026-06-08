@@ -1,0 +1,27 @@
+{
+    "id": "2c70d1c2-8430-d2e0-e802-e32443cc6022",
+    "force_snapshot_recovery": false,
+    "pre_command": "osascript -e \"set volume output volume 71\"",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Change system volume to half.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'set volumeOutput to output volume of (get volume settings)' -e 'return volumeOutput >= 45 and volumeOutput <= 55' ",
+            100
+        ],
+        [
+            "osascript -e 'set volumeOutput to output volume of (get volume settings)' -e 'return volumeOutput >= 40 and volumeOutput <= 60' ",
+            75
+        ],
+        [
+            "osascript -e 'set volumeOutput to output volume of (get volume settings)' -e 'return volumeOutput >= 35 and volumeOutput <= 65' ",
+            50
+        ],
+        [
+            "osascript -e 'set volumeOutput to output volume of (get volume settings)' -e 'return volumeOutput >= 30 and volumeOutput <= 70' ",
+            25
+        ]
+    ]
+}

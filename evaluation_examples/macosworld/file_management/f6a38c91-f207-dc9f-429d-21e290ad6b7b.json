@@ -1,0 +1,19 @@
+{
+    "id": "f6a38c91-f207-dc9f-429d-21e290ad6b7b",
+    "force_snapshot_recovery": false,
+    "pre_command": "open /Users/admin/Desktop; osascript -e 'tell application \"Finder\" to close windows' && rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && open /Users/admin/Documents/benchmark_files/Multimedia/Zipped",
+    "before_action_delay_seconds": 15,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Please help me copy the zip file to desktop.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "[[ -e /Users/admin/Documents/benchmark_files/Multimedia/Zipped/unzipped_contents.zip && -e /Users/admin/Desktop/unzipped_contents.zip ]] && echo True || echo False ",
+            100
+        ],
+        [
+            "[[ -e /Users/admin/Desktop/unzipped_contents.zip ]] && echo True || echo False ",
+            50
+        ]
+    ]
+}

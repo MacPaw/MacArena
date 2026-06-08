@@ -1,0 +1,16 @@
+{
+    "id": "beec16eb-066f-9a4a-69a2-9d7a3d2fbcf5",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Keynote\" to activate' && sleep 5 && osascript -e 'tell application \"Keynote\" to make new document with properties {document theme:theme \"Dynamic Waves Light\"}'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 5,
+    "instruction": "I'm making a paper presentation about this article: https://neurips.cc/virtual/2024/poster/94798. I've chosen a Keynote template. Now, I need your help copying the title into the slide's title and copying the authors into the subtitle of the slide.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Keynote\" to get the object text of the default title item of the current slide of the front document' | grep -q \"Can Simple Averaging Defeat Modern Watermarks?\" && osascript -e 'tell application \"Keynote\" to get the object text of the default body item of the current slide of the front document' | grep \"Pei Yang\" | grep \"Hai Ci\" | grep \"Yiren Song\" | grep -q \"Mike Zheng Shou\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

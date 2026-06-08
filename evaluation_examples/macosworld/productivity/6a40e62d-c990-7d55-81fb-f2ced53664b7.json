@@ -1,0 +1,23 @@
+{
+    "id": "6a40e62d-c990-7d55-81fb-f2ced53664b7",
+    "force_snapshot_recovery": true,
+    "pre_command": "defaults write com.apple.Notes windowStateArchive -dict-add currentNoteContainerViewMode 0 && osascript -e 'tell application \"Notes\" to make new note with properties {name:\"Lorem Ipsum\", body:\"Dolor Sit Amet\"}' && osascript -e 'tell application \"Notes\" to delete every note' -e 'tell application \"Notes\" to delete every note in folder \"Recently Deleted\"' && osascript -e 'tell application \"Notes\" to quit'",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Launch the Notes app, find a note (okay to either create a new one or use an existing one), and insert a 2x2 table. Sequentially put `Alice`, `Bob`, `Charlie`, `Dan`.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | grep -A20 \"><div>Alice\" | grep -A20 \"><div>Bob\" | grep -A20 \"><div>Charlie\" | grep -A20 \"><div>Dan\" >/dev/null && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | grep -A20 \"><div>Alice\" | grep -A20 \"><div>Charlie\" | grep -A20 \"><div>Bob\" | grep -A20 \"><div>Dan\" >/dev/null && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"Notes\" to get the body of every note' | grep -q \"<object><table\" >/dev/null && echo \"True\" || echo \"False\" ",
+            20
+        ]
+    ]
+}

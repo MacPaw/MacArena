@@ -1,0 +1,21 @@
+{
+    "id": "99ab4414-4d61-4952-abb8-b750158bb8ac",
+    "pre_command": "osascript -e 'tell application \"Notes\" to quit' && sleep 2 && osascript -e 'tell application \"Notes\"\\n    try\\n        set recipesFolder to folder \"Recipes\"\\n        delete recipesFolder\\n        return \"True\"\\n    on error\\n        return \"False\"\\n    end try\\nend tell'",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 2,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Within Notes, create a new folder called 'Recipes'. Then, inside this folder, create a note titled 'Chocolate Cake Recipe' and add the following content: list the ingredients 'Flour, Sugar, Cocoa, Eggs, Butter' and include the instruction 'Mix all together and bake for 30 minutes'.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Notes\"\n    try\n        set recipesFolder to folder \"Recipes\"\n        set cakeNote to note \"Chocolate Cake Recipe\" in recipesFolder\n        set noteContent to body of cakeNote\n        set requiredIngredients to {\"Flour\", \"Sugar\", \"Cocoa\", \"Eggs\", \"Butter\"}\n        set allIngredientsFound to true\n        repeat with ingredient in requiredIngredients\n            if noteContent does not contain ingredient then\n                set allIngredientsFound to false\n                exit repeat\n            end if\n        end repeat\n        set instructionFound to (noteContent contains \"Mix all together and bake for 30 minutes\")\n        if allIngredientsFound and instructionFound then\n            return \"True\"\n        else\n            return \"False\"\n        end if\n    on error\n        return \"False\"\n    end try\nend tell'",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Notes"
+    ],
+    "categories": [
+        "Productivity"
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "id": "24903bd5-44c5-27e7-748a-1cf2ec714e0b",
+    "force_snapshot_recovery": true,
+    "before_action_delay_seconds": 15,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Search and open `000000.png`.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q '^000000.png$' && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attribute \"AXTitle\" of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"000000.png\" && echo \"True\" || echo \"False\" ",
+            50
+        ]
+    ]
+}

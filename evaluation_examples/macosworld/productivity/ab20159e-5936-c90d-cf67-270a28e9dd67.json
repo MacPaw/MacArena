@@ -1,0 +1,20 @@
+{
+    "id": "ab20159e-5936-c90d-cf67-270a28e9dd67",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Numbers\" to activate' && sleep 5 && osascript -e 'tell application \"Numbers\" to tell (make new document with properties {document template:template \"Blank\"}) to tell table 1 of sheet 1 to set {column count, row count, header row count, header column count} to {2, 4, 0, 0}'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Help me save the current empty table to Desktop, naming it with \"empty\".",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "[ -e \"/Users/admin/Desktop/empty.numbers\" ] && echo \"True\" || echo \"False\" ",
+            100
+        ],
+        [
+            "[ -e \"/Users/admin/Desktop/*.numbers\" ] && echo \"True\" || echo \"False\" ",
+            50
+        ]
+    ]
+}

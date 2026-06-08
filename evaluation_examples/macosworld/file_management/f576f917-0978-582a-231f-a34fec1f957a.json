@@ -1,0 +1,15 @@
+{
+    "id": "f576f917-0978-582a-231f-a34fec1f957a",
+    "force_snapshot_recovery": false,
+    "pre_command": "open /Users/admin/Desktop; osascript -e 'tell application \"Finder\" to close windows'",
+    "before_action_delay_seconds": 15,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Change my hard disk volume name to `Local HD`.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "diskutil info / | grep 'Volume Name' | grep -q \"Local HD\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

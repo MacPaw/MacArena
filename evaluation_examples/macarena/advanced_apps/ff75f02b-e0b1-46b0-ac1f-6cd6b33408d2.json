@@ -1,0 +1,21 @@
+{
+    "id": "ff75f02b-e0b1-46b0-ac1f-6cd6b33408d2",
+    "pre_command": "osascript -e 'tell application \"Visual Studio Code\" to quit' && sleep 2 && mkdir -p ~/Documents/Projects && rm -f ~/Documents/Projects/script.js",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 3,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Create a new JavaScript file named 'script.js' in the 'Projects' folder located in Documents and write a simple alert function that displays 'Hello, World!'",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -f ~/Documents/Projects/script.js ] && [ -s ~/Documents/Projects/script.js ] && grep -q \"alert.*Hello.*World\" ~/Documents/Projects/script.js && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Visual Studio Code"
+    ],
+    "categories": [
+        "Advanced Apps"
+    ]
+}

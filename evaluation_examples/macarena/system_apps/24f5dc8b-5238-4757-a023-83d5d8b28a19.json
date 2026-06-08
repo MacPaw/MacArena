@@ -1,0 +1,21 @@
+{
+    "id": "24f5dc8b-5238-4757-a023-83d5d8b28a19",
+    "pre_command": "osascript -e 'tell application \"Calendar\"\ntry\nset baseDate to current date\nset year of baseDate to 2025\nset month of baseDate to October\nset day of baseDate to 29\nset hours of baseDate to 0\nset minutes of baseDate to 0\nset seconds of baseDate to 0\nset targetDate to baseDate\nset nextDay to targetDate + (1 * days)\nrepeat with currentCalendar in calendars\nset eventsOnDate to (every event of currentCalendar whose start date \u2265 targetDate and start date < nextDay)\nrepeat with currentEvent in eventsOnDate\nset eventSummary to summary of currentEvent\nif eventSummary is \"Project Deadline Review\" then\ndelete currentEvent\nend if\nend repeat\nend repeat\nreturn true\non error\nreturn false\nend try\nend tell' && osascript -e 'tell application \"Calendar\" to quit' && sleep 2",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 3,
+    "before_grading_delay_seconds": 5,
+    "instruction": "Create a new event titled 'Project Deadline Review' for October 29, 2025, from 2:00 PM to 3:00 PM, and set a reminder to alert 15 minutes before the event.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\"\nif not (exists process \"Calendar\") then\nreturn false\nend if\nend tell\ntell application \"Calendar\"\ntry\nset baseDate to (current date)\nset year of baseDate to 2025\nset month of baseDate to October\nset day of baseDate to 29\nset hours of baseDate to 0\nset minutes of baseDate to 0\nset seconds of baseDate to 0\nset targetDate to baseDate\nset nextDay to targetDate + (1 * days)\nrepeat with currentCalendar in calendars\ntry\nset eventsOnDate to (every event of currentCalendar whose start date \u2265 targetDate and start date < nextDay)\nrepeat with currentEvent in eventsOnDate\ntry\nset eventSummary to summary of currentEvent\nif eventSummary is \"Project Deadline Review\" then\nset eventStartDate to start date of currentEvent\nset eventEndDate to end date of currentEvent\nset startTime to time of eventStartDate\nset endTime to time of eventEndDate\nset startHours to startTime div hours\nset startMinutes to (startTime mod hours) div minutes\nset endHours to endTime div hours\nset endMinutes to (endTime mod hours) div minutes\nif startHours is 14 and startMinutes is 0 and endHours is 15 and endMinutes is 0 then\ntry\nrepeat with currentReminder in display alarms of currentEvent\nset reminderOffset to trigger interval of currentReminder\nif reminderOffset is -15 then\nreturn true\nend if\nend repeat\nreturn false\non error\nreturn false\nend try\nelse\nreturn false\nend if\nend if\non error\nend try\nend repeat\non error\nend try\nend repeat\nreturn false\non error\nreturn false\nend try\nend tell'",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Calendar"
+    ],
+    "categories": [
+        "System Apps"
+    ]
+}

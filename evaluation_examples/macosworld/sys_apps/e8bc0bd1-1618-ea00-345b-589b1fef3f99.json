@@ -1,0 +1,15 @@
+{
+    "id": "e8bc0bd1-1618-ea00-345b-589b1fef3f99",
+    "force_snapshot_recovery": true,
+    "pre_command": "open -a Reminders",
+    "before_action_delay_seconds": 10,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Create a reminder `Bring home the cards`. Click the empty space or press enter to make sure the reminder is logged.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Reminders\" to get the name of every reminder whose completed is false' | grep -q \"Bring home the cards\" >/dev/null && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "id": "4f0bf3a4-ff5e-3d6b-3732-194b39bdb2e2",
+    "force_snapshot_recovery": false,
+    "pre_command": "open /Users/admin/Desktop; osascript -e 'tell application \"Finder\" to close windows' && rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && open /Users/admin/Documents/benchmark_files/Multimedia/Faces",
+    "before_action_delay_seconds": 15,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Help me clean up the current folder by moving all images below 400x400 resolution to trash.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "[[ -f \"/Users/admin/Documents/benchmark_files/Multimedia/Faces/000004.png\" && ! $(ls /Users/admin/Documents/benchmark_files/Multimedia/Faces/*.jpg 2> /dev/null) ]] && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

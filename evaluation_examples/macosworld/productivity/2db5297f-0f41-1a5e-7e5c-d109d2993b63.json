@@ -1,0 +1,16 @@
+{
+    "id": "2db5297f-0f41-1a5e-7e5c-d109d2993b63",
+    "force_snapshot_recovery": false,
+    "force_error_free_prep": true,
+    "pre_command": "osascript -e 'tell application \"Pages\" to quit without saving' && osascript -e 'tell application \"Numbers\" to quit without saving' && osascript -e 'tell application \"Keynote\" to quit without saving' && osascript -e 'tell application \"Pages\" to activate' && sleep 5 && osascript -e 'tell application \"Pages\" to make new document with properties {document template:template \"Modern Letter\"}'",
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Help me zoom in the current document to exactly 300%.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"System Events\" to get value of attributes of menu button \"Zoom\" of toolbar 1 of window 1 of (first application process whose frontmost is true)' 2>/dev/null | grep -q \"300%\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "id": "1df5d9f4-5b69-5e98-a8ab-d415dae9ca83",
+    "force_snapshot_recovery": false,
+    "pre_command": "osascript -e 'tell application \"System Events\" to keystroke \"q\" using {command down, shift down, option down}'",
+    "before_action_delay_seconds": 60,
+    "before_grading_delay_seconds": 30,
+    "instruction": "Log in to the system. My account is `admin` and the password is `admin`.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "who | grep -q console && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

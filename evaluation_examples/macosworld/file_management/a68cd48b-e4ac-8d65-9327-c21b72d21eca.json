@@ -1,0 +1,15 @@
+{
+    "id": "a68cd48b-e4ac-8d65-9327-c21b72d21eca",
+    "force_snapshot_recovery": false,
+    "pre_command": "open /Users/admin/Desktop; osascript -e 'tell application \"Finder\" to close windows' && rm -rf /Users/admin/Documents/benchmark_files/ && cp -r /Users/admin/Benchmark_Backup/benchmark_files /Users/admin/Documents && open /Users/admin/Documents/benchmark_files/Multimedia/Separated_images",
+    "before_action_delay_seconds": 15,
+    "before_grading_delay_seconds": 0,
+    "instruction": "I wish Finder to display the files not using icons, but in a view of hierarchical columns. Please help me adjust this.",
+    "source": "macosworld",
+    "evaluator": [
+        [
+            "osascript -e 'tell application \"Finder\" to get current view of front Finder window' | grep -q \"column\" && echo \"True\" || echo \"False\" ",
+            100
+        ]
+    ]
+}

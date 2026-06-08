@@ -1,0 +1,21 @@
+{
+    "id": "dcd13aac-8c9a-4bff-b182-b5e2045b4d39",
+    "pre_command": "osascript -e 'tell application \"Keka\" to quit' && sleep 2 && rm -rf ~/Desktop/example && mkdir -p ~/Desktop/example && echo \"hello\" > ~/Desktop/example/hello.txt && zip -r ~/Desktop/example.zip ~/Desktop/example && rm -rf ~/Desktop/example",
+    "pre_upload_files": [],
+    "before_action_delay_seconds": 5,
+    "before_grading_delay_seconds": 0,
+    "instruction": "Extract the contents of the 'example.zip' file found in the Downloads folder and save the extracted files to the Desktop.",
+    "source": "synth_generation",
+    "evaluator": [
+        [
+            "[ -d ~/Desktop/example ] && echo True || echo False",
+            100
+        ]
+    ],
+    "related_apps": [
+        "Keka"
+    ],
+    "categories": [
+        "File Management"
+    ]
+}
