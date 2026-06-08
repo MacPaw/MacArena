@@ -173,12 +173,17 @@ MacPaw Way Ltd. provides this benchmark "as is" and shall not be held liable for
 ## 📚 Citation
 If you use MacArena in your research, please cite the following paper:
 
-<!-- ```
-@article{muryn2026macarena,
-  title={MacArena: Benchmarking Computer Use Agents on an Online macOS Environment},
-  author={Muryn, Victor and Shamrai, Maksym and Mazepa, Sofiia and Khodysko, Yehor},
-  journal={arXiv preprint arXiv:xxxx.xxxxx},
-  year={2026},
-  url={https://arxiv.org/abs/xxxx.xxxxx}
+```
+@misc{muryn-etal-2026-aiwild-macarena,
+  author      = {Victor Muryn and Maksym Shamrai and Sofiia Mazepa and Yehor Khodysko},
+  title       = {MacArena: Benchmarking Computer Use Agents on an Online macOS Environment},
+  month       = {June},
+  year        = {2026},
+  eprint      = {2606.06560},
+  eprinttype  = {arxiv},
+  eprintclass = {cs.LG},
+  url         = {https://arxiv.org/abs/2606.06560},
+  urldate     = {2026-06-08},
+  note        = {\emph{Accepted to AIWILD @ ICML 2026}},
 }
-``` -->
+```
