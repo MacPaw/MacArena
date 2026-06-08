@@ -2,7 +2,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.11%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![macOS](https://img.shields.io/badge/platform-macOS-brightgreen.svg?logo=apple)](https://www.apple.com/macos/)
-[![arXiv](https://img.shields.io/badge/arXiv-xxxx.xxxxx-b31b1b.svg)](https://arxiv.org/abs/xxxx.xxxxx)
+[![arXiv](https://img.shields.io/badge/arXiv-2606.06560-b31b1b.svg)](https://arxiv.org/abs/2606.06560)
 [![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Bucket-yellow)](https://huggingface.co/buckets/macpaw-research/MacArena)
 
 A benchmark for evaluating computer and browser use agents capabilities on macOS systems. This is a specialized fork of the OSWorld repository, enhanced with tasks from macOSWorld and extended with additional custom evaluation scenarios.
